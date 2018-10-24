@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    color: #353535;
+    font-family: Helvetica, sans-serif;
+    background: url(http://i.imgur.com/GHr12sH.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+nav {
+    background-color: #0275d8;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+header img {
+    height: 50%;
+}
+
+@media screen and (max-width: 991px){
+    nav.ml-auto {
+        margin-top: -31px;
+    }
+}
+
+.form-estac input,
+.form-estac button {
+    font-size: 18px;
+	margin: 16px 0;
+}
+
+#spinner {
+    position: absolute;
+    width: 50vw;
+    background-color: white;
+    top: 20vw;
+    left: 0px;
+    margin-left: 20%;
+    width: 35vh;
+}
+
+#spinner-img {
+    width: 35vh;
+    height: 35vh;
+}
+
+#spinner-txt {
+    margin-left: 10px;
+}
