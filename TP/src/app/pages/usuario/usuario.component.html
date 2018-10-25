@@ -1,0 +1,123 @@
+<div class="row justify-content-center">
+    <div class="col col-11 col-md-6">
+        <section class="form-login">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h3>Usuario</h3>
+                </div>
+                <div class="card-body" id="card-parte-1">
+                    <form action="#">
+                        <div class="input-group" id="input-group-mail">
+                            <label>Seleccione el numero de mesa</label>
+                            <select required class="form-control" id="numeroMesa">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="input-group" id="input-group-pass">
+                            <label>Ingrese el codigo de su pedido</label> <br>
+                            <input id="codigo-txt" type="text" class="form-control" name="pass" placeholder="Codigo de pedido">
+                            <div class="invalid-feedback" id="contraError">Codigo de pedido incorrecto</div>
+                        </div>   
+                        <br>
+                        <div class="input-group" id="input-group-pass">
+                            <span id="mensaje-login"></span> 
+                        </div>
+                        <input type="button" class="btn btn-lg btn-primary btn-block" value="Ingresar" onclick="validateDatosMesa()" />  
+                    </form>
+                </div>
+                <div class="card-body" id="card-parte-2" style="display: none">
+                        <div class="btn-toolbar" role="toolbar">
+                                <button type="button" class="btn btn-primary  mr-2" onclick="actualizar()">Actualizar</button>
+                            </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Pedido</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Tiempo restante</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-pedidos">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body" id="card-parte-3" style="display: none">
+                    <h3>Por favor complete esta breve encuesta</h3>
+                    <form action="#">
+                        <div class="input-group" id="input-group-mail">
+                            <label>Puntuacion de la mesa</label>
+                            <select required class="form-control" id="puntMesa">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group" id="input-group-mail">
+                            <label>Puntuacion del restaurante</label>
+                            <select required class="form-control" id="puntRestaurante">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group" id="input-group-mail">
+                            <label>Puntuacion del cocinero</label>
+                            <select required class="form-control" id="puntCocinero">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group" id="input-group-mail">
+                            <label>Puntuacion del mozo</label>
+                            <select required class="form-control" id="puntMozo">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </div>
+                        <input type="button" class="btn btn-lg btn-primary btn-block" value="Enviar" onclick="subirEncuesta()" />  
+                    </form>
+                </div>
+            </div>
+                            
+        </section>  
+    </div>     
+</div>
