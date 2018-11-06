@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { UsersService } from "src/app/services/users.service";
 
 @Component({
     selector: 'login',
@@ -6,4 +7,7 @@ import { Component } from "@angular/core";
     styleUrls: []
 }) export class LoginComponent {
     
+    constructor(private usersService: UsersService) {
+    }
+
 }
