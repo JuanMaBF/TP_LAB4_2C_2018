@@ -1,12 +1,10 @@
 <?php 
-include '../users.service.php';
-include './login-response.php';
 
 class AuthService {
 
     public static function Authenticate($user, $pass) {
         $loginResponse = new LoginResponse();
-        $foundUser = UsersService.TraerPorUsuario($user);
+        $foundUser = UsersService::TraerPorUsuario($user);
         if(count($foundUser) > 0) {
             if($foundUser->password == $pass) {
                 $loginResponse->result = "ok";

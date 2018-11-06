@@ -1,6 +1,7 @@
 <?php
 
     require 'vendor/autoload.php';
+    include './services/auth/auth.service.php';
 
     $app = new Slim\App();
     
@@ -18,8 +19,12 @@
 
     $app->post('/login', function($request, $response, $args) {
         $getUser = json_decode($request->getBody(), true);
-        
-        return json_encode();
+        $loginResponse = AuthService::Authenticate($getUser['user'], $getUser['password']);
+        return json_encode($loginResponse);
+    });
+
+    $app->get('/hola', function($request, $response, $args) {
+        echo 'hola';
     });
 
     $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
