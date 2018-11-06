@@ -16,19 +16,10 @@
                 ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     });
 
-    $app->post('/guardarJuego', function($request, $response, $args) {
-        $params = json_encode($request->getParams());
-        $myfile = fopen("resultados.txt", "w") or die("Unable to open file!");
-        fwrite($myfile, $params);
-        fclose($myfile);
-    });
-
-    $app->get('/traerTodos', function($request, $response, $args) {
-        $myfile = fopen("resultados.txt", "r") or die("Unable to open file!");
-        $body = $response->getBody();
-        $contenido = fread($myfile,filesize("resultados.txt"));
-        $body->write($contenido);
-        fclose($myfile);
+    $app->post('/login', function($request, $response, $args) {
+        $getUser = json_decode($request->getBody(), true);
+        
+        return json_encode();
     });
 
     $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
@@ -37,5 +28,16 @@
     });
 
     $app->run();
+
+    function doConnection() {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $conn = new mysqli($servername, $username, $password);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+        return $conn;
+    }
 
 ?>
