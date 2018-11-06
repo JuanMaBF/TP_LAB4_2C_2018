@@ -13,14 +13,35 @@ class JWTService {
         $payload = array(
         	'iat'=>$now,
             'exp' => $now + (100*100),
-            'aud' => self::Aud(),
+            'aud' => self::GetAud(),
             'data' => $data
         );
         return JWT::encode($payload, self::$secret_key);
     }
 
-    public static function VerifyToken($token) {
+    public static function DecodeToken($token) {
+        $decoded = null;
+        try {
+            $decoded = JWT::decode($token, self::$claveSecreta, self::$tipoEncriptacion);
+        } catch (ExpiredException $e) {
+           throw new Exception("Token invalido");
+        }
+        return $decoded;
+    }
 
+    private static function GetAud()
+    {
+        $aud = null;
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $aud = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $aud = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $aud = $_SERVER['REMOTE_ADDR'];
+        }
+        $aud .= @$_SERVER['HTTP_USER_AGENT'];
+        $aud .= gethostname();
+        return sha1($aud);
     }
 
 }
