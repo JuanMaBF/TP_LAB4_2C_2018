@@ -1,6 +1,6 @@
 <?php
 
-class Response {
+class LoginResponse {
 
     public $result;
     public $error;

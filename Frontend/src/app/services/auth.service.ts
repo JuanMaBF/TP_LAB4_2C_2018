@@ -10,7 +10,7 @@ export class AuthService {
 
     public login(usuario: Usuario) {
         return this.httpService
-            .post('', JSON.stringify(usuario));
+            .post('login', JSON.stringify(usuario));
     }
 
     public logout() {

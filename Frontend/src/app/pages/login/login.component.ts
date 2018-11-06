@@ -33,9 +33,9 @@ import { Router } from "@angular/router";
             localStorage.setItem('comanda-usr', rta);
             this.router.navigate(['inicio'])
         } else {
-            if(rta.err == "Usr") {
+            if(rta.err == "usrError") {
                 this.errorMsg = "Usuario incorrecto";
-            } else if(rta.err == "Pass") {
+            } else if(rta.err == "passError") {
                 this.errorMsg = "Contraseña incorrecta";
             } else {
                 this.errorMsg = "Error";
