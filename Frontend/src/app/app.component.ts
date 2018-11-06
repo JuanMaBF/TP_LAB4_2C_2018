@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
           <h2>La comanda</h2>
       </nav>
     </header>
-    <usuario></usuario>
+    <login></login>
   `,
   styleUrls: []
 })
