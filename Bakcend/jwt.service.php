@@ -19,14 +19,17 @@ class JWTService {
         return JWT::encode($payload, self::$secret_key);
     }
 
-    public static function DecodeToken($token) {
+    public static function GetTokenData($token) {
         $decoded = null;
         try {
             $decoded = JWT::decode($token, self::$claveSecreta, self::$tipoEncriptacion);
         } catch (ExpiredException $e) {
            throw new Exception("Token invalido");
         }
-        return $decoded;
+        if($decodificado->aud !== self::Aud()) {
+            throw new Exception("No es el usuario valido");
+        }
+        return $decoded->data;
     }
 
     private static function GetAud()
