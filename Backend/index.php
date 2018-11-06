@@ -1,7 +1,6 @@
 <?php
 
     require 'vendor/autoload.php';
-    include './services/auth/auth.service.php';
 
     $app = new Slim\App();
     
@@ -20,7 +19,7 @@
     $app->post('/login', function($request, $response, $args) {
         $getUser = json_decode($request->getBody(), true);
         $loginResponse = AuthService::Authenticate($getUser['user'], $getUser['password']);
-        return json_encode($loginResponse);
+        //return json_encode($loginResponse);
     });
 
     $app->get('/hola', function($request, $response, $args) {
@@ -33,16 +32,5 @@
     });
 
     $app->run();
-
-    function doConnection() {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $conn = new mysqli($servername, $username, $password);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
-        return $conn;
-    }
 
 ?>

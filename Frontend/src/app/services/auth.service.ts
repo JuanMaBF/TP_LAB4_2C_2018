@@ -9,8 +9,11 @@ export class AuthService {
     }
 
     public login(usuario: Usuario) {
-        return this.httpService
+        /*return this.httpService
             .post('login', JSON.stringify(usuario))
+            .then(rta => console.log(rta));*/
+        return this.httpService
+            .post('login', {})
             .then(rta => console.log(rta));
     }
 

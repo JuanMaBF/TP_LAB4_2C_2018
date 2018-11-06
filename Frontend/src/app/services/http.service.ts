@@ -5,6 +5,7 @@ import { Http } from "@angular/http";
 export class HttpService {
 
     private baseUrl = 'http://lvh.me/TP_LAB4_2C_2018/Backend/index.php/';
+    //private baseUrl = 'http://lvh.me/ApiRest/index.php/';
 
     constructor(private http: Http) {
     }
