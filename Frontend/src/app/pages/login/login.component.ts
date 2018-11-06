@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
-import { UsersService } from "src/app/services/users.service";
+import { AuthService } from "src/app/services/auth.service";
+import { Usuario } from "src/app/model/usuario";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'login',
@@ -7,7 +9,38 @@ import { UsersService } from "src/app/services/users.service";
     styleUrls: []
 }) export class LoginComponent {
     
-    constructor(private usersService: UsersService) {
+    public usr: string
+    public pass: string;
+    public errorMsg: string;
+
+    constructor(private authService: AuthService,
+        private router: Router) {
+    }
+
+    public login() {
+        if(this.usr && this.pass) {
+            let usuario = new Usuario(this.usr, this.pass);
+            this.authService
+                .login(usuario)
+                .then(rta => this.handleRta(rta));
+        } else {
+            this.errorMsg = !this.usr ? "Usuario incorrecto" : !this.pass ? "Contraseña incorrecta" : "";
+        }
+    }
+
+    public handleRta(rta: any) {
+        if(rta.result == "ok") {
+            localStorage.setItem('comanda-usr', rta);
+            this.router.navigate(['inicio'])
+        } else {
+            if(rta.err == "Usr") {
+                this.errorMsg = "Usuario incorrecto";
+            } else if(rta.err == "Pass") {
+                this.errorMsg = "Contraseña incorrecta";
+            } else {
+                this.errorMsg = "Error";
+            }
+        }
     }
 
 }

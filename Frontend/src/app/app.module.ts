@@ -7,7 +7,8 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { HttpService } from './services/http.service';
-import { UsersService } from './services/users.service';
+import { AuthService } from './services/auth.service';
+import { FormsModule } from '@angular/forms';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -25,11 +26,12 @@ let router: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(router),
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [
     HttpService,
-    UsersService
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

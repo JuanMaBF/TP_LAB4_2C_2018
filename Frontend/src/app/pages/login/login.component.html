@@ -7,39 +7,20 @@
                 </div>
                 <div class="card-body">
                     <form action="#">
-                        <div class="input-group" id="input-group-mail">
-                            <input id="usr-txt" type="text" class="form-control" name="usr" placeholder="Usuario">
+                        <div class="input-group">
+                            <input [(ngModel)]="usr" type="text" class="form-control" name="usr" placeholder="Usuario">
                             <div class="invalid-feedback" id="usuarioError">Nombre de usuario equivocado</div>
                         </div>
                         <br>
-                        <div class="input-group" id="input-group-pass">
-                            <input id="pass-txt" type="password" class="form-control" name="pass" placeholder="Contraseña">
+                        <div class="input-group">
+                            <input [(ngModel)]="pass" type="password" class="form-control" name="pass" placeholder="Contraseña">
                             <div class="invalid-feedback" id="contraError">Contraseña incorrecta</div>
                         </div>   
                         <br>
-                        <div class="input-group" id="input-group-pass">
-                            <span id="mensaje-login"></span> 
-                        </div>
-                        <input type="button" class="btn btn-lg btn-primary btn-block" value="Ingresar" onclick="doLogin()" />  
-                        
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tipo de usuario
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" onclick="setTestValue('socio1')" href="#">Socio 1</a>
-                                <a class="dropdown-item" onclick="setTestValue('bartender1')" href="#">Bartender 1</a>
-                                <a class="dropdown-item" onclick="setTestValue('bartender2')" href="#">Bartender 2</a>
-                                <a class="dropdown-item" onclick="setTestValue('cocineroCocina1')" href="#">Cocinero (cocina) 1</a>
-                                <a class="dropdown-item" onclick="setTestValue('cocineroCocina2')" href="#">Cocinero (cocina) 2</a>
-                                <a class="dropdown-item" onclick="setTestValue('cocineroPostres1')" href="#">Cocinero (postres) 1</a>
-                                <a class="dropdown-item" onclick="setTestValue('cocineroPostres2')" href="#">Cocinero (postres) 2</a>
-                                <a class="dropdown-item" onclick="setTestValue('cervecero1')" href="#">Cervecero 1</a>
-                                <a class="dropdown-item" onclick="setTestValue('cervecero2')" href="#">Cervecero 2</a>
-                                <a class="dropdown-item" onclick="setTestValue('mozo1')" href="#">Mozo 1</a>
-                                <a class="dropdown-item" onclick="setTestValue('mozo2')" href="#">Mozo 2</a>
-                            </div>
-                            </div> 
+                        <span class="text-warning">
+                            {{errorMsg}}
+                        </span>
+                        <input type="button" class="btn btn-lg btn-primary btn-block" value="Ingresar" (click)="login()" />  
                     </form>
                 </div>
             </div>
