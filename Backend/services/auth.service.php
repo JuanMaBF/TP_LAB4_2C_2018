@@ -1,5 +1,8 @@
 <?php 
 
+require 'login-response.php';
+require 'users.service.php';
+
 class AuthService {
 
     public static function Authenticate($user, $pass) {

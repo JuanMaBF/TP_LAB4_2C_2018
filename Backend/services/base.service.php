@@ -2,7 +2,7 @@
 
 class BaseService {
 
-    private static function doConnection() {
+    public static function doConnection() {
         $servername = "localhost";
         $username = "root";
         $password = "";

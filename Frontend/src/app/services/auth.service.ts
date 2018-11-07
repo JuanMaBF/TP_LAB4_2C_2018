@@ -8,12 +8,9 @@ export class AuthService {
     constructor(private httpService: HttpService) {
     }
 
-    public login(usuario: Usuario) {
-        /*return this.httpService
-            .post('login', JSON.stringify(usuario))
-            .then(rta => console.log(rta));*/
+    public login(usuario: Usuario): Promise<any> {
         return this.httpService
-            .post('login', {})
+            .post('login', usuario)
             .then(rta => console.log(rta));
     }
 
