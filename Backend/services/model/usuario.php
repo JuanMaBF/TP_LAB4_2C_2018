@@ -5,7 +5,7 @@ class Usuario {
     public $password;
     public $type;
 
-    function __constructor($user, $password, $type) {
+    function __construct($user, $password, $type) {
         $this->user = $user;
         $this->password = $password;
         $this->type = $type;

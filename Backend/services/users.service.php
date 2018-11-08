@@ -1,6 +1,7 @@
 <?php
 
 require('base.service.php');
+require('model/usuario.php');
 
 class UsersService extends BaseService {
 

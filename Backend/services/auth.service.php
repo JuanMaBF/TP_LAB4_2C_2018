@@ -2,6 +2,7 @@
 
 require 'login-response.php';
 require 'users.service.php';
+require 'jwt.service.php';
 
 class AuthService {
 
@@ -11,15 +12,15 @@ class AuthService {
         if(count($foundUser) > 0) {
             if($foundUser->password == $pass) {
                 $loginResponse->result = "ok";
-                $loginResponse->token = "ahora vemos wacho";
-                $loginResponse->usrType = "tu vieja";
+                $loginResponse->token = JWTService::CreateToken($foundUser);
+                $loginResponse->usrType = $foundUser->type;
             } else {
                 $loginResponse->result = "error";
-                $loginResponse->error = "usrError";
+                $loginResponse->error = "passError";
             }   
         } else {
             $loginResponse->result = "error";
-            $loginResponse->error = "passError";
+            $loginResponse->error = "usrError";
         }
         return $loginResponse;
     }
