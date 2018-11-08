@@ -2,7 +2,6 @@
 
     require 'services/vendor/autoload.php';
     require 'services/auth.service.php';
-    require 'services/users.service.php';
 
     $app = new Slim\App();
     
