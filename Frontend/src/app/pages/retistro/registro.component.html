@@ -3,25 +3,33 @@
         <section class="form-login">
             <div class="card mt-5">
                 <div class="card-header">
-                    <h3>Login</h3>
+                    <h3>Registro</h3>
                 </div>
                 <div class="card-body">
                     <form action="#">
                         <div class="input-group">
                             <input [(ngModel)]="usr" type="text" class="form-control" name="usr" placeholder="Usuario">
-                            <div class="invalid-feedback" id="usuarioError">Nombre de usuario equivocado</div>
                         </div>
                         <br>
                         <div class="input-group">
                             <input [(ngModel)]="pass" type="password" class="form-control" name="pass" placeholder="Contraseña">
-                            <div class="invalid-feedback" id="contraError">Contraseña incorrecta</div>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <input [(ngModel)]="confirmPass" type="password" class="form-control" name="pass" placeholder="Confirmar contraseña">
                         </div>   
+                        <br>
+                        <select [(ngModel)]="type" class="form-control">
+                            <option disabled selected>Tipo de usuario</option>
+                            <option>Mozo</option>
+                            <option>Cocinero</option>
+                            <option>Encargado</option>
+                        </select>   
                         <br>
                         <span class="text-warning">
                             {{errorMsg}}
                         </span>
-                        <input type="button" class="btn btn-lg btn-primary btn-block" value="Ingresar" (click)="login()" />  
-                        ¿No trenés cuenta? <a [routerLink]="['/registro']">Registrate</a>
+                        <input type="button" class="btn btn-lg btn-primary btn-block" value="Registrarse" (click)="registro()" />  
                     </form>
                 </div>
             </div>

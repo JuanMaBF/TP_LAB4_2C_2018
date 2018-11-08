@@ -9,10 +9,12 @@ import { HttpModule } from '@angular/http';
 import { HttpService } from './services/http.service';
 import { AuthService } from './services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { RegistroComponent } from './pages/retistro/registro.component';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'registro', component: RegistroComponent},
   { path: 'usuario', component: UsuarioComponent}
 ]
 
@@ -21,7 +23,8 @@ let router: Routes = [
     AppComponent,
     LoginComponent,
     InicioComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
