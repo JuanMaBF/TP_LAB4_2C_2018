@@ -2,6 +2,7 @@
 
     require 'services/vendor/autoload.php';
     require 'services/auth.service.php';
+    require 'services/pedido.service.php';
 
     $app = new Slim\App();
     
@@ -28,10 +29,15 @@
         return UsersService::AddUser($user->user, $user->password, $user->type);
     });
 
+    $app->post('/traerTodos', function($request, $response, $args) {
+        $pedidoResponse = PedidoService::TraerTodos();
+        return json_encode($pedidoResponse);
+    });
+
     $app->post('/alta', function($request, $response, $args) {
-        $user = json_decode($request->getBody());
-        $loginResponse = AuthService::Authenticate($user->user, $user->password);
-        return json_encode($loginResponse);
+        $pedido = json_decode($request->getBody());
+        $pedidoResponse = PedidoService::Alta($pedido->pedido);
+        return json_encode($pedidoResponse);
     });
 
     $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {

@@ -18,7 +18,7 @@ class PedidoService extends BaseService {
         return $listaPedidos;
     }    
 
-    public static function AddUser($pedido) {
+    public static function Alta($pedido) {
         $conn = parent::doConnection();
         $sql = "INSERT INTO Lav4SP.Pedidos (Pedido) 
                 VALUES ('$pedido')";
