@@ -31,6 +31,10 @@ import { type } from "os";
         }
     }
 
+    public resolved(captchaResponse: any) {
+        console.log(`Resolved captcha with response ${captchaResponse}:`);
+    }
+
     public validateFields(): string {
         if(!this.usr) {
             return "Usuario incorrecto";

@@ -10,6 +10,7 @@ import { HttpService } from './services/http.service';
 import { AuthService } from './services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './pages/retistro/registro.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -30,7 +31,8 @@ let router: Routes = [
     BrowserModule,
     RouterModule.forRoot(router),
     HttpModule,
-    FormsModule
+    FormsModule,
+    RecaptchaModule
   ],
   providers: [
     HttpService,
