@@ -23,9 +23,15 @@
         return json_encode($loginResponse);
     });
 
-    $app->get('/registro', function($request, $response, $args) {
+    $app->post('/registro', function($request, $response, $args) {
         $user = json_decode($request->getBody());
-        return UsersService::AddUser($user->user, $user->password);
+        return UsersService::AddUser($user->user, $user->password, $user->type);
+    });
+
+    $app->post('/alta', function($request, $response, $args) {
+        $user = json_decode($request->getBody());
+        $loginResponse = AuthService::Authenticate($user->user, $user->password);
+        return json_encode($loginResponse);
     });
 
     $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
