@@ -17,6 +17,18 @@ class UsersService extends BaseService {
         return null;
     }    
 
+    public static function AddUser($user, $pass, $tipo) {
+        if(TraerPorUsuario($user) == null) {
+            $conn = doConnection();
+            $sql = "INSERT INTO Lav4SP.Usuarios (User, Password, Type) 
+                    VALUES ('$user', '$pass', '$tipo')";
+            $conn->query($sql);
+            $conn->close();
+            return 'ok';
+        }
+        return 'usrExist';
+    }
+
 }
 
 ?>

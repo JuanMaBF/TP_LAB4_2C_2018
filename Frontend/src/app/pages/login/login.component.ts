@@ -30,12 +30,12 @@ import { Router } from "@angular/router";
 
     public handleRta(rta: any) {
         if(rta.result == "ok") {
-            localStorage.setItem('comanda-usr', rta);
-            this.router.navigate(['inicio'])
+            localStorage.setItem('comanda-usr', JSON.stringify(rta));
+            this.router.navigate([''])
         } else {
-            if(rta.err == "usrError") {
+            if(rta.error == "usrError") {
                 this.errorMsg = "Usuario incorrecto";
-            } else if(rta.err == "passError") {
+            } else if(rta.error == "passError") {
                 this.errorMsg = "Contraseña incorrecta";
             } else {
                 this.errorMsg = "Error";

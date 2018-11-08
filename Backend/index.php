@@ -2,6 +2,7 @@
 
     require 'services/vendor/autoload.php';
     require 'services/auth.service.php';
+    require 'services/users.service.php';
 
     $app = new Slim\App();
     
@@ -23,12 +24,13 @@
         return json_encode($loginResponse);
     });
 
-    $app->get('/hola', function($request, $response, $args) {
-        echo 'hola';
+    $app->get('/registro', function($request, $response, $args) {
+        $user = json_decode($request->getBody());
+        return UsersService::AddUser($user->user, $user->password);
     });
 
     $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
-        $handler = $this->notFoundHandler; // handle using the default Slim page not found handler
+        $handler = $this->notFoundHandler; 
         return $handler($req, $res);
     });
 
