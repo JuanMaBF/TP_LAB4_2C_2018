@@ -47,19 +47,12 @@ import { type } from "os";
     }
 
     public handleRta(rta: any): void {
-        /*if(rta.result == "ok") {
+        if(rta.result == "ok") {
             localStorage.setItem('comanda-usr', JSON.stringify(rta));
             this.router.navigate([''])
-        } else {
-            if(rta.error == "usrError") {
-                this.errorMsg = "Usuario incorrecto";
-            } else if(rta.error == "passError") {
-                this.errorMsg = "Contraseña incorrecta";
-            } else {
-                this.errorMsg = "Error";
-            }
-        }*/
-        console.log(rta);
+        } else if(rta.error == "usrError") {
+            this.errorMsg = "Este usuario ya existe";
+        }
     }
 
 }
