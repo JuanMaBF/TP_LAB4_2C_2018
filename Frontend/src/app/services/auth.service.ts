@@ -14,6 +14,12 @@ export class AuthService {
             .then(rta => rta.json());
     }
 
+    public registro(usuario: Usuario): Promise<any> {
+        return this.httpService
+            .post('registro', usuario)
+            .then(rta => rta.text());
+    }
+
     public logout() {
         localStorage.removeItem('comanda-usr');
     }

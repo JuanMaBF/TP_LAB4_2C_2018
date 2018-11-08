@@ -1,6 +1,5 @@
 <?php
 
-require('base.service.php');
 require('model/pedido.php');
 
 class PedidoService extends BaseService {
