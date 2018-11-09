@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Usuario } from "src/app/model/usuario";
 import { Router } from "@angular/router";
-import { type } from "os";
 
 @Component({
     selector: 'registro',
@@ -13,6 +12,7 @@ import { type } from "os";
     public usr: string
     public pass: string;
     public confirmPass: string;
+    public captchaConfirmed: boolean = false;
     public type: string = 'Tipo de usuario';
     public errorMsg: string;
 
@@ -32,7 +32,7 @@ import { type } from "os";
     }
 
     public resolved(captchaResponse: any) {
-        console.log(`Resolved captcha with response ${captchaResponse}:`);
+        this.captchaConfirmed = true;
     }
 
     public validateFields(): string {
@@ -46,6 +46,8 @@ import { type } from "os";
             return "Tipo de usuario incorrecto";
         } else if (this.pass != this.confirmPass) {
             return "Las contraseñas no coinciden";
+        } else if (!this.captchaConfirmed) {
+            return "Confirme el captcha";
         }
         return "";
     }

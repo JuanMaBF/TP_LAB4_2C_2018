@@ -32,7 +32,7 @@ let router: Routes = [
     RouterModule.forRoot(router),
     HttpModule,
     FormsModule,
-    RecaptchaModule
+    RecaptchaModule.forRoot()
   ],
   providers: [
     HttpService,

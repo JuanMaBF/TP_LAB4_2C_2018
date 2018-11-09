@@ -4,7 +4,7 @@ import { Http } from "@angular/http";
 @Injectable()
 export class HttpService {
 
-    private baseUrl = 'http://lvh.me/TP_LAB4_2C_2018/Backend/index.php/';
+    private baseUrl = 'https://apitplav.000webhostapp.com/index.php/';
 
     constructor(private http: Http) {
     }
