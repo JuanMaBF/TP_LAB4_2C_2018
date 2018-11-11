@@ -11,7 +11,7 @@ export class AuthService {
     public login(usuario: Usuario): Promise<any> {
         return this.httpService
             .post('login', usuario)
-            .then(rta => rta.json());
+            .then(rta => console.log(rta));
     }
 
     public registro(usuario: Usuario): Promise<any> {
