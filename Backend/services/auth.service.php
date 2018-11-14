@@ -13,6 +13,7 @@ class AuthService {
             if($foundUser->password == $pass) {
                 $loginResponse->result = "ok";
                 $loginResponse->token = JWTService::CreateToken($foundUser);
+                $loginResponse->user = $foundUser->user;
                 $loginResponse->usrType = $foundUser->type;
             } else {
                 $loginResponse->result = "error";
