@@ -9,7 +9,7 @@ class AuthService {
     public static function Authenticate($user, $pass) {
         $loginResponse = new LoginResponse();
         $foundUser = UsersService::TraerPorUsuario($user);
-        if(count($foundUser) > 0) {
+        if($foundUser != "NO-EXISTE") {
             if($foundUser->password == $pass) {
                 $loginResponse->result = "ok";
                 $loginResponse->token = JWTService::CreateToken($foundUser);

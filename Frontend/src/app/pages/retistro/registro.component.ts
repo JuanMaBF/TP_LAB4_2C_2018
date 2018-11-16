@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
     public usr: string
     public pass: string;
     public confirmPass: string;
-    public captchaConfirmed: boolean = false;
+    public captchaConfirmed: boolean = true;
     public type: string = 'Tipo de usuario';
     public errorMsg: string;
 
@@ -24,7 +24,6 @@ import { Router } from "@angular/router";
         this.errorMsg = this.validateFields();
         if(this.errorMsg == "") {
             let usuario = new Usuario(this.usr, this.pass, this.type);
-            console.log(usuario);
             this.authService
                 .registro(usuario)
                 .then(rta => this.handleRta(rta));
@@ -59,6 +58,7 @@ import { Router } from "@angular/router";
         } else if(rta.error == "usrError") {
             this.errorMsg = "Este usuario ya existe";
         }
+        console.log(rta);
     }
 
 }
