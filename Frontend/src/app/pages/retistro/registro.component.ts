@@ -52,11 +52,13 @@ import { Router } from "@angular/router";
     }
 
     public handleRta(rta: any): void {
-        if(rta.result == "ok") {
+        if(rta.error == "usrError") {
+            this.errorMsg = "Este usuario ya existe";
+        } else if(rta.error = "passError") {
+            this.errorMsg = "Error en el servidor.";
+        } else if(rta.result == "ok"){
             localStorage.setItem('comanda-usr', JSON.stringify(rta));
             this.router.navigate([''])
-        } else if(rta.error == "usrError") {
-            this.errorMsg = "Este usuario ya existe";
         }
         console.log(rta);
     }

@@ -27,7 +27,7 @@ class UsersService extends BaseService {
             $conn->close();
             return 'ok';
         }
-        return 'usrExist';
+        return '{ "error": "usrExist" }';
     }
 
 }

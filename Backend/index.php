@@ -28,7 +28,8 @@
         $user = json_decode($request->getBody());
         $result = UsersService::AddUser($user->user, $user->password, $user->type);
         if($result == "ok") {
-            return AuthService::Authenticate($user->user, $user->password);
+            $loginResponse = AuthService::Authenticate($user->user, $user->password);
+            return json_encode($loginResponse);
         } else {
             return $result;
         }
