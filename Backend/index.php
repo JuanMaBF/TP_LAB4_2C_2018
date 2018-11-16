@@ -26,7 +26,12 @@
 
     $app->post('/registro', function($request, $response, $args) {
         $user = json_decode($request->getBody());
-        return UsersService::AddUser($user->user, $user->password, $user->type);
+        $result = UsersService::AddUser($user->user, $user->password, $user->type);
+        if($result == "ok") {
+            return AuthService::Authenticate($user->user, $user->password);
+        } else {
+            return $result;
+        }
     });
 
     $app->post('/traerTodos', function($request, $response, $args) {
