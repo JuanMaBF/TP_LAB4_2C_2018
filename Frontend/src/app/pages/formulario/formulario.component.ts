@@ -43,7 +43,13 @@ import { AuthService } from "src/app/services/auth.service";
             }
         });
         if(pedidosValid) {
-            this.pedidosService.altaPedidos(this.pedidosList);
+            this.pedidosService
+                .altaPedidos(this.pedidosList)
+                .then(rta => {
+                    this.mesa = "";
+                    this.pedidosList = new Array<Pedido>();
+                    this.addPedido();
+                });
         }
     }
 

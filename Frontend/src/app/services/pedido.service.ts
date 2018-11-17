@@ -9,10 +9,14 @@ export class PedidoService {
 
     }
 
-    public altaPedidos(pedidos: Array<Pedido>) {
-        this.httpService
-            .post('altaPedidos', pedidos)
-            .then(rta => console.log(rta));
+    public altaPedidos(token: String, pedidos: Array<Pedido>): Promise<any> {
+        let data = {
+            pedidos: pedidos,
+            token: token
+        }
+        return this.httpService
+            .post('altaPedidos', data)
+            .then(rta => rta);
     }
 
 }
