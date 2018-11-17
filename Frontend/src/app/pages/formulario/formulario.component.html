@@ -14,9 +14,19 @@
                 <div class="card">
                     <div class="card-body">
                         <form>
+                            <label>Numero de mesa</label>
+                            <select [(ngModel)]="mesa" name="pedido" class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                            <br/>
+                            <label>Pedidos</label>
                             <div class="form-row pedido-elemento mt-1" id="form-row-0" *ngFor="let pedido of pedidosList">
                                 <div class="col-7">
-                                    <select [(ngModel)]="pedido.pedido" name="pedido" class="form-control">
+                                    <select [(ngModel)]="pedido.nombre" name="pedido{{pedidosList.indexOf(pedido)}}" class="form-control">
                                         <option>Vino tinto</option>
                                         <option>Vino blanco</option>
                                         <option>Cerveza rubia</option>
@@ -26,16 +36,17 @@
                                         <option>Alfajor</option>
                                         <option>Torta</option>
                                     </select>
-                                    <div class="invalid-feedback" id="errorEl-0">El tipo de elemento seleccionado es invalid</div>
                                 </div>
                                 <div class="col-3">
-                                    <input [(ngModel)]="pedido.cantidad" type="number" name="cantidad" class="form-control" placeholder="Cantidad" oninput="setPrecio()">
-                                    <div class="invalid-feedback" id="errorNum-0">Indique el número</div>
+                                    <input [(ngModel)]="pedido.cantidad" type="number" name="cantidad{{pedidosList.indexOf(pedido)}}" class="form-control" placeholder="Cantidad">
                                 </div>
                                 <div class="col col-2">
                                     <button type="button" class="btn btn-secondary" (click)="removePedido(pedido)">X</button>
                                 </div>
                             </div>
+                            <span class="text-warning">
+                                {{errorMessage}}
+                            </span>
                             <br/>
                             <button (click)="addPedido()" type="button" class="btn btn-info">Agregar</button>
                             <button (click)="cargarPedidos()" type="button" class="btn btn-primary">Cargar</button>

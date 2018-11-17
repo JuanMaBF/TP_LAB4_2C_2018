@@ -13,6 +13,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormularioComponent } from './pages/formulario/formulario.component';
+import { PedidoService } from './services/pedido.service';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -41,7 +42,8 @@ let router: Routes = [
   ],
   providers: [
     HttpService,
-    AuthService
+    AuthService,
+    PedidoService
   ],
   bootstrap: [AppComponent]
 })

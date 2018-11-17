@@ -24,4 +24,9 @@ export class AuthService {
         localStorage.removeItem('comanda-usr');
     }
 
+    public getCurrentUser() {
+        let lsValue = localStorage.getItem('comanda-usr');
+        return JSON.parse(lsValue);
+    }
+
 }

@@ -40,10 +40,16 @@
         return json_encode($pedidoResponse);
     });
 
-    $app->post('/alta', function($request, $response, $args) {
-        $pedido = json_decode($request->getBody());
-        $pedidoResponse = PedidoService::Alta($pedido->pedido);
-        return json_encode($pedidoResponse);
+    $app->post('/altaPedidos', function($request, $response, $args) {
+        $pedidos = json_decode($request->getBody());
+        try {
+            foreach($pedidos as $ped) { 
+                PedidoService::Alta($ped);
+            }
+            return 'ok';
+        } catch(Exception $e) {
+            return json_encode($e);
+        }
     });
 
     $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
