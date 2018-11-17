@@ -1,0 +1,49 @@
+<div class="row justify-content-center mt-5">
+    <div class="col col-12 col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Nuevo pedido</h3>
+            </div>
+            <div class="card-body">
+                <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group" role="group">
+                        <button [routerLink]="['/']" type="button" class="btn btn-secondary">Volver</button>
+                    </div>
+                </div>
+                <br/>
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-row pedido-elemento mt-1" id="form-row-0" *ngFor="let pedido of pedidosList">
+                                <div class="col-7">
+                                    <select [(ngModel)]="pedido.pedido" name="pedido" class="form-control">
+                                        <option>Vino tinto</option>
+                                        <option>Vino blanco</option>
+                                        <option>Cerveza rubia</option>
+                                        <option>Cerveza negra</option>
+                                        <option>Empanada</option>
+                                        <option>Tarta</option>
+                                        <option>Alfajor</option>
+                                        <option>Torta</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="errorEl-0">El tipo de elemento seleccionado es invalid</div>
+                                </div>
+                                <div class="col-3">
+                                    <input [(ngModel)]="pedido.cantidad" type="number" name="cantidad" class="form-control" placeholder="Cantidad" oninput="setPrecio()">
+                                    <div class="invalid-feedback" id="errorNum-0">Indique el número</div>
+                                </div>
+                                <div class="col col-2">
+                                    <button type="button" class="btn btn-secondary" (click)="removePedido(pedido)">X</button>
+                                </div>
+                            </div>
+                            <br/>
+                            <button (click)="addPedido()" type="button" class="btn btn-info">Agregar</button>
+                            <button (click)="cargarPedidos()" type="button" class="btn btn-primary">Cargar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>           
+
+</div>

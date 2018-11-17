@@ -11,6 +11,7 @@ class AuthService {
         $foundUser = UsersService::TraerPorUsuario($user);
         if($foundUser != "NO-EXISTE") {
             if($foundUser->password == $pass) {
+                $loginResponse->error = "";
                 $loginResponse->result = "ok";
                 $loginResponse->token = JWTService::CreateToken($foundUser);
                 $loginResponse->user = $foundUser->user;
