@@ -14,6 +14,9 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormularioComponent } from './pages/formulario/formulario.component';
 import { PedidoService } from './services/pedido.service';
+import { EstadisticasComponent } from './pages/estadisticas/estadisticas.component';
+import { ChartModule, HIGHCHARTS_MODULES, Highcharts } from 'angular-highcharts';
+import exporting from 'highcharts/modules/exporting.src.js';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -21,7 +24,8 @@ let router: Routes = [
   { path: 'registro', component: RegistroComponent},
   { path: 'usuario', component: UsuarioComponent},
   { path: 'formulario', component: FormularioComponent},
-]
+  { path: 'estadisticas', component: EstadisticasComponent},
+];
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ let router: Routes = [
     InicioComponent,
     UsuarioComponent,
     RegistroComponent,
-    FormularioComponent
+    FormularioComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
@@ -38,12 +43,14 @@ let router: Routes = [
     HttpModule,
     FormsModule,
     RecaptchaModule.forRoot(),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ChartModule
   ],
   providers: [
     HttpService,
     AuthService,
-    PedidoService
+    PedidoService,
+    { provide: HIGHCHARTS_MODULES, useFactory: ()=>{return [exporting]} }
   ],
   bootstrap: [AppComponent]
 })

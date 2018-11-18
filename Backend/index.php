@@ -36,13 +36,17 @@
     });
 
     $app->post('/traerTodos', function($request, $response, $args) {
-        $pedidoResponse = PedidoService::TraerTodos();
-        return json_encode($pedidoResponse);
+        $pedidos = json_decode($request->getBody());
+        if(AuthService::ValidateUserTo($pedidos->token, 'test')) {
+            $pedidoResponse = PedidoService::TraerTodos();
+            return json_encode($pedidoResponse);
+        }
+        return 'TokenExpirado';
     });
 
     $app->post('/altaPedidos', function($request, $response, $args) {
         $pedidos = json_decode($request->getBody());
-        if(!AuthService::ValidateUserTo($pedidos->token, 'test')) {
+        if(AuthService::ValidateUserTo($pedidos->token, 'test')) {
             try {
                 foreach($pedidos->pedidos as $ped) { 
                     PedidoService::Alta($ped);

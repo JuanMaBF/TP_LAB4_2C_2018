@@ -35,6 +35,7 @@ import { AuthService } from "src/app/services/auth.service";
         this.pedidosList.forEach(p => {
             if(!p.cantidad || !p.nombre) {
                 pedidosValid = false;
+                this.errorMessage = 'Complete todos los campos';
             } else {
                 p.asignado = currentUser['user'];
                 p.estado = 'Pendiente';
@@ -46,7 +47,6 @@ import { AuthService } from "src/app/services/auth.service";
             this.pedidosService
                 .altaPedidos(currentUser.token, this.pedidosList)
                 .then(rta => {
-                    console.log(rta);
                     this.mesa = "";
                     this.pedidosList = new Array<Pedido>();
                     this.addPedido();
