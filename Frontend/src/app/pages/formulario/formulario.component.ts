@@ -44,8 +44,9 @@ import { AuthService } from "src/app/services/auth.service";
         });
         if(pedidosValid) {
             this.pedidosService
-                .altaPedidos(this.pedidosList)
+                .altaPedidos(currentUser.token, this.pedidosList)
                 .then(rta => {
+                    console.log(rta);
                     this.mesa = "";
                     this.pedidosList = new Array<Pedido>();
                     this.addPedido();

@@ -42,14 +42,17 @@
 
     $app->post('/altaPedidos', function($request, $response, $args) {
         $pedidos = json_decode($request->getBody());
-        try {
-            foreach($pedidos as $ped) { 
-                PedidoService::Alta($ped);
+        if(!AuthService::ValidateUserTo($pedidos->token, 'test')) {
+            try {
+                foreach($pedidos->pedidos as $ped) { 
+                    PedidoService::Alta($ped);
+                }
+                return 'ok';
+            } catch(Exception $e) {
+                return json_encode($e);
             }
-            return 'ok';
-        } catch(Exception $e) {
-            return json_encode($e);
         }
+        return 'TokenExpirado';
     });
 
     $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {

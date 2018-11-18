@@ -27,6 +27,10 @@ class AuthService {
         return $loginResponse;
     }
 
+    public static function ValidateUserTo($token, $action) {
+        return JWTService::TokenIsExpired($token);
+    }
+
 }
 
 ?>

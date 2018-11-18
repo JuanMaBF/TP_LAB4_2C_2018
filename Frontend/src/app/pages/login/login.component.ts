@@ -31,7 +31,7 @@ import { Router } from "@angular/router";
     public handleRta(rta: any) {
         if(rta.result == "ok") {
             localStorage.setItem('comanda-usr', JSON.stringify(rta));
-            this.router.navigate([''])
+            this.router.navigate(['']);
         } else {
             if(rta.error == "usrError") {
                 this.errorMsg = "Usuario incorrecto";
