@@ -36,10 +36,10 @@
     });
 
     $app->post('/traerTodos', function($request, $response, $args) {
-        $pedidos = json_decode($request->getBody());
-        if(AuthService::ValidateUserTo($pedidos->token, 'test')) {
-            $pedidoResponse = PedidoService::TraerTodos();
-            return json_encode($pedidoResponse);
+        $token = json_decode($request->getBody());
+        if(AuthService::ValidateUserTo($token, 'test')) {
+            $pedidosArray = PedidoService::TraerTodos();
+            return json_encode($pedidosArray);
         }
         return 'TokenExpirado';
     });

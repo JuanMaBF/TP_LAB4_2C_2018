@@ -12,6 +12,18 @@ export class PedidoService {
         private router: Router) {
     }
 
+    public traerTodos(token: string): Promise<any> {
+        return this.httpService
+            .post('traerTodos', '')
+            .then(rta => {
+                console.log(rta);
+                let resp = this.handleRta(rta);
+                if(resp) {
+                    return rta.json() as Array<Pedido>;
+                }
+            });
+    }
+
     public altaPedidos(token: String, pedidos: Array<Pedido>): Promise<any> {
         let data = {
             pedidos: pedidos,

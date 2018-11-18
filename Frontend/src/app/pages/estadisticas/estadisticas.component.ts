@@ -9,33 +9,46 @@ import * as Highcharts from 'highcharts';
     templateUrl: './estadisticas.component.html'
 }) export class EstadisticasComponent {
 
+    public allPedidos: Array<Pedido> = new Array<Pedido>();
+
     constructor(private pedidosService: PedidoService,
         public authService: AuthService) {
-            $(function () { 
-                var myChart = Highcharts.chart('container', {
-                    chart: {
-                        type: 'bar'
-                    },
-                    title: {
-                        text: 'Fruit Consumption'
-                    },
-                    xAxis: {
-                        categories: ['Apples', 'Bananas', 'Oranges']
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Fruit eaten'
-                        }
-                    },
-                    series: [{
-                        name: 'Jane',
-                        data: [1, 0, 4]
-                    }, {
-                        name: 'John',
-                        data: [5, 7, 3]
-                    }]
-                });
+            this.treerTodos();
+    }
+
+    private treerTodos() {
+        let token = this.authService.getCurrentUser().token;
+        this.pedidosService
+            .traerTodos(token)
+            .then(pedidos => { 
+                this.allPedidos = pedidos;
+                this.initChart();
+                console.log(pedidos);
             });
+    }
+
+    private initChart(): void {
+        $(function () { 
+            var myChart = Highcharts.chart('container', {
+                chart: { type: 'bar' },
+                title: { text: 'Fruit Consumption' },
+                xAxis: {
+                    categories: ['Apples', 'Bananas', 'Oranges']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Fruit eaten'
+                    }
+                },
+                series: [{
+                    name: 'Jane',
+                    data: [1, 0, 4]
+                }, {
+                    name: 'John',
+                    data: [5, 7, 3]
+                }]
+            });
+        });
     }
 
 }
