@@ -23,6 +23,7 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 import { ExcelService } from './services/excel.service';
 import { HighlightDirective } from './directives/highlight.directive';
 import { RowHighlightDirective } from './directives/row-highlight.directive';
+import { CargandoDirective } from './directives/cargando.directive';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -43,7 +44,8 @@ let router: Routes = [
     FormularioComponent,
     EstadisticasComponent,
     HighlightDirective,
-    RowHighlightDirective
+    RowHighlightDirective,
+    CargandoDirective
   ],
   imports: [
     BrowserModule,
