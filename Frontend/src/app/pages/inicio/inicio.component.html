@@ -8,10 +8,9 @@
                 <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group" role="group">
                         <button id="agregar-pedido-btn" style="display: none;" type="button" class="btn btn-primary  mr-2" data-toggle="modal" data-target="#pedidos-modal">Agregar pedido</button>
-                        <select required class="form-control" id="select-filter" onchange="initGrilla()">
-                            <option>Activos</option>
+                        <select required class="form-control" id="select-filter" (change)="onFilterChange($event.target.value)">
                             <option value="Pendiente">Pendientes</option>
-                            <option >En preparación</option>
+                            <option >En preparacion</option>
                             <option>Listo para servir</option>
                             <option value="Terminado">Terminados</option>
                             <option>Todos</option>
@@ -35,15 +34,16 @@
                         <tbody>
                             <tr *ngFor="let ped of pedidos" RowHighlight>
                                 <td>
-                                    <span 
-                                        Highlight
+                                    <span Highlight
                                         [highlightColor]='isCurrentUser(ped.mozo)'>{{ped.nombre | mayuscula | vinoTinto}}</span>
                                 </td>
                                 <td>{{ped.cantidad}}</td>
                                 <td>
-                                    <select [(ngModel)]="ped.estado" class="{{'form-control' | sinAsignar:ped.estado}}">
+                                    <select [(ngModel)]="ped.estado" 
+                                        class="{{'form-control' | sinAsignar:ped.estado}}"
+                                        (change)="onStateChange(ped)">
                                         <option>Pendiente</option>
-                                        <option>En preparación</option>
+                                        <option>En preparacion</option>
                                         <option>Listo para servir</option>
                                         <option>Terminado</option>
                                     </select>

@@ -60,6 +60,21 @@
         return 'TokenExpirado';
     });
 
+    $app->post('/actualizarPedidos', function($request, $response, $args) {
+        $pedidos = json_decode($request->getBody());
+        if(AuthService::ValidateUserTo($pedidos->token, 'test')) {
+            try {
+                foreach($pedidos->pedidos as $ped) { 
+                    PedidoService::Update($ped);
+                }
+                return 'ok';
+            } catch(Exception $e) {
+                return json_encode($e);
+            }
+        }
+        return 'TokenExpirado';
+    });
+
     $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
         $handler = $this->notFoundHandler; 
         return $handler($req, $res);

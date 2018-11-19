@@ -11,6 +11,7 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
 }) export class InicioComponent implements OnInit {
 
     public pedidos: Array<Pedido>;
+    public currentFilter: string;
 
     constructor(private router: Router,
         private pedidosService: PedidoService,
@@ -34,6 +35,11 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
                 let todos = rta as Array<Pedido>;
                 this.pedidos = todos.filter(p => p.estado == state);
             });
+        this.currentFilter = state;
+    }
+
+    public onFilterChange(filter: string) {
+        this.getAllWithState(filter);
     }
 
     public verDetalle(pedido: Pedido) {
@@ -62,6 +68,13 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
             .showClose(false)
             .body('Sesion cerrada')
             .open()
+    }
+
+    public onStateChange(pedido: Pedido) {
+        let token = this.authService.getCurrentUser().token;
+        this.pedidosService
+            .actualizarPedido(token, [pedido])
+            .then(rta => this.getAllWithState(this.currentFilter));
     }
 
     public isCurrentUser(name: string) {

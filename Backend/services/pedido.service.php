@@ -30,6 +30,18 @@ class PedidoService extends BaseService {
         return 'ok';
     }
 
+    public static function Update($pedido) {
+        $conn = parent::doConnection();
+        $sql = "UPDATE Lab4SP.Pedidos 
+                SET Nombre = '$pedido->nombre', Cantidad = '$pedido->cantidad', Estado = '$pedido->estado', 
+                    Iniciado = '$pedido->iniciado', Mesa = '$pedido->mesa', Mozo = '$pedido->mozo', 
+                    Asignado = '$pedido->asignado', Estimado = '$pedido->estimado'
+                WHERE Id = $pedido->id";
+        $conn->query($sql);
+        $conn->close();
+        return 'ok';
+    }
+
 }
 
 ?>

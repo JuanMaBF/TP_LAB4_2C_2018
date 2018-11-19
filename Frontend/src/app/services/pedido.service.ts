@@ -27,10 +27,20 @@ export class PedidoService {
         let data = {
             pedidos: pedidos,
             token: token
-        }
+        };
         return this.httpService
             .post('altaPedidos', data)
             .then(rta => this.handleRta(rta));
+    }
+
+    public actualizarPedido(token: string, pedidos: Pedido[]): Promise<any> {
+        let data = {
+            pedidos: pedidos,
+            token: token
+        };
+        return this.httpService
+            .post('actualizarPedidos', data)
+            .then(rta => this.handleRta(rta))
     }
 
     private handleRta(rta: any) {
