@@ -48,6 +48,15 @@
                                 {{errorMessage}}
                             </span>
                             <br/>
+                            <label class="file-button">
+                                Subir foto de la mesa
+                                <input type="file"
+                                    ngFileSelect
+                                    [options]="options"
+                                    (onUpload)="handleUpload($event)"
+                                    (beforeUpload)="beforeUpload($event)">
+                            </label>
+                            <br/>
                             <button (click)="addPedido()" type="button" class="btn btn-info">Agregar</button>
                             <button (click)="cargarPedidos()" type="button" class="btn btn-primary">Cargar</button>
                         </form>

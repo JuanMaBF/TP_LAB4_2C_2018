@@ -22,8 +22,8 @@ class PedidoService extends BaseService {
 
     public static function Alta($pedido) {
         $conn = parent::doConnection();
-        $sql = "INSERT INTO Lab4SP.Pedidos (Nombre, Cantidad, Estado, Asignado, Iniciado, Mesa, Mozo) 
-                VALUES ('$pedido->nombre', '$pedido->cantidad', '$pedido->estado', '$pedido->asignado'
+        $sql = "INSERT INTO Lab4SP.Pedidos (Nombre, Cantidad, Estado, Iniciado, Mesa, Mozo) 
+                VALUES ('$pedido->nombre', '$pedido->cantidad', '$pedido->estado'
                         , '$pedido->iniciado', '$pedido->mesa', '$pedido->mozo')";
         $conn->query($sql);
         $conn->close();

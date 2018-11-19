@@ -5,12 +5,49 @@ import { AuthService } from "src/app/services/auth.service";
 
 @Component({
     selector: 'formulario',
-    templateUrl: './formulario.component.html'
+    templateUrl: './formulario.component.html',
+    styles: [`
+        .file-button {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color 
+                .15s ease-in-out,background-color 
+                .15s ease-in-out,border-color 
+                .15s ease-in-out,box-shadow 
+                .15s ease-in-out;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+    `]
 }) export class FormularioComponent {
 
     public mesa: string;
     public pedidosList: Array<Pedido> = new Array<Pedido>();
     public errorMessage: string;
+
+    public uploadFile: any;
+    public hasBaseDropZoneOver: boolean = false;
+    public options = { 
+        url: 'http://lvh.me/TP_LAB4_2C_2018/Backend/subirImagen.php'
+    };
+    public sizeLimit = 2000000;
     
     constructor(private pedidosService: PedidoService,
         public authService: AuthService) {
@@ -51,6 +88,30 @@ import { AuthService } from "src/app/services/auth.service";
                     this.pedidosList = new Array<Pedido>();
                     this.addPedido();
                 });
+        }
+    }
+
+    handleUpload(data): void {
+        if (data && data.response) {
+          data = JSON.parse(data.response);
+        }
+        setTimeout(console.clear.bind(console), 10);
+    }
+     
+    fileOverBase(e:any):void {
+        this.hasBaseDropZoneOver = e;
+    }
+    
+    beforeUpload(uploadingFile): void {
+        let extension = uploadingFile.originalName
+            .substr(uploadingFile.originalName.lastIndexOf('.') + 1)
+            .toLowerCase();
+        if (uploadingFile.size > this.sizeLimit) {
+            uploadingFile.setAbort();
+            alert('File is too large');
+        } else if (extension != 'jpg' && extension != 'png'){
+            uploadingFile.setAbort();
+            alert('solo se puede jpg y png');
         }
     }
 

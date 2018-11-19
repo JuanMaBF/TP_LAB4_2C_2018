@@ -15,8 +15,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormularioComponent } from './pages/formulario/formulario.component';
 import { PedidoService } from './services/pedido.service';
 import { EstadisticasComponent } from './pages/estadisticas/estadisticas.component';
-import { ChartModule, HIGHCHARTS_MODULES, Highcharts } from 'angular-highcharts';
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import exporting from 'highcharts/modules/exporting.src.js';
+import { Ng2UploaderModule } from 'ng2-uploader';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -44,7 +45,8 @@ let router: Routes = [
     FormsModule,
     RecaptchaModule.forRoot(),
     NgbModule.forRoot(),
-    ChartModule
+    ChartModule,
+    Ng2UploaderModule
   ],
   providers: [
     HttpService,

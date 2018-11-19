@@ -50,6 +50,7 @@
             try {
                 foreach($pedidos->pedidos as $ped) { 
                     PedidoService::Alta($ped);
+                    renameTempFile($ped->mesa, $ped->mozo);
                 }
                 return 'ok';
             } catch(Exception $e) {
@@ -65,5 +66,13 @@
     });
 
     $app->run();
+
+    function renameTempFile($mesa, $mozo) {
+        if(file_exists('uploads/temp.jpg')) {
+            rename('uploads/temp.jpg', 'uploads/'.$mesa.'-'.$mozo.'.jpg');
+        } else if(file_exists('uploads/temp.png')) {
+            rename('uploads/temp.png', 'uploads/'.$mesa.'-'.$mozo.'.png');
+        }
+    }
 
 ?>
