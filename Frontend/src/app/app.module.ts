@@ -27,6 +27,7 @@ import { CargandoDirective } from './directives/cargando.directive';
 import { VinoTintoPipe } from './pipes/vino-tinto.pipe';
 import { MayusculaPipe } from './pipes/mayuscula.pipe';
 import { SinAsignarPipe } from './pipes/sin-asignar.pipe';
+import { InformacionComponent } from './pages/informacion/informacion.component';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -35,6 +36,7 @@ let router: Routes = [
   { path: 'usuario', component: UsuarioComponent},
   { path: 'formulario', component: FormularioComponent},
   { path: 'estadisticas', component: EstadisticasComponent},
+  { path: 'informacion', component: InformacionComponent},
 ];
 
 @NgModule({
@@ -51,7 +53,8 @@ let router: Routes = [
     CargandoDirective,
     VinoTintoPipe,
     MayusculaPipe,
-    SinAsignarPipe
+    SinAsignarPipe,
+    InformacionComponent
   ],
   imports: [
     BrowserModule,

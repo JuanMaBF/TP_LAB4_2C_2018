@@ -10,7 +10,8 @@ import { Component } from '@angular/core';
     </header>
     <router-outlet></router-outlet>
   `,
-  styleUrls: []
+  styles: [`
+    `]
 })
 export class AppComponent {
   

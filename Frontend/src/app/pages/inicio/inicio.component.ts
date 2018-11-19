@@ -7,7 +7,22 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
 
 @Component({
     selector: 'inicio',
-    templateUrl: './inicio.component.html'
+    templateUrl: './inicio.component.html',
+    styles: [`
+        #footer {
+            bottom: 0;
+            width: 100%;
+            margin-top: 25px;
+            height: 60px;      
+            background-color: #f7f7f7;
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-bottom: 10px;
+            .footer-block {
+                margin: 20px 0;
+            }
+        }
+    `]
 }) export class InicioComponent implements OnInit {
 
     public pedidos: Array<Pedido>;
@@ -39,7 +54,15 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
     }
 
     public onFilterChange(filter: string) {
-        this.getAllWithState(filter);
+        if(filter != 'Todos') {
+            this.getAllWithState(filter);
+        } else {
+            let token = this.authService.getCurrentUser().token;
+            this.pedidosService
+                .traerTodos(token)
+                .then(rta => { this.pedidos = rta as Array<Pedido> });
+            this.currentFilter = 'Todos';
+        }
     }
 
     public verDetalle(pedido: Pedido) {
@@ -74,7 +97,7 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
         let token = this.authService.getCurrentUser().token;
         this.pedidosService
             .actualizarPedido(token, [pedido])
-            .then(rta => this.getAllWithState(this.currentFilter));
+            .then(rta => this.onFilterChange(this.currentFilter));
     }
 
     public isCurrentUser(name: string) {
