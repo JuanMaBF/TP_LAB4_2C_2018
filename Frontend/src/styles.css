@@ -34,3 +34,7 @@ nav h2 {
 .margin-img {
     margin-left: 25%;
 }
+
+.fc-err {
+    border-color: red !important;
+}

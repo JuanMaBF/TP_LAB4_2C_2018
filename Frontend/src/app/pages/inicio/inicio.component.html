@@ -37,11 +37,11 @@
                                 <td>
                                     <span 
                                         Highlight
-                                        [highlightColor]='isCurrentUser(ped.mozo)'>{{ped.nombre}}</span>
+                                        [highlightColor]='isCurrentUser(ped.mozo)'>{{ped.nombre | mayuscula | vinoTinto}}</span>
                                 </td>
                                 <td>{{ped.cantidad}}</td>
                                 <td>
-                                    <select [(ngModel)]="ped.estado" id="select-vino-1" class="form-control">
+                                    <select [(ngModel)]="ped.estado" class="{{'form-control' | sinAsignar:ped.estado}}">
                                         <option>Pendiente</option>
                                         <option>En preparación</option>
                                         <option>Listo para servir</option>

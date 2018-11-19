@@ -24,6 +24,9 @@ import { ExcelService } from './services/excel.service';
 import { HighlightDirective } from './directives/highlight.directive';
 import { RowHighlightDirective } from './directives/row-highlight.directive';
 import { CargandoDirective } from './directives/cargando.directive';
+import { VinoTintoPipe } from './pipes/vino-tinto.pipe';
+import { MayusculaPipe } from './pipes/mayuscula.pipe';
+import { SinAsignarPipe } from './pipes/sin-asignar.pipe';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -45,7 +48,10 @@ let router: Routes = [
     EstadisticasComponent,
     HighlightDirective,
     RowHighlightDirective,
-    CargandoDirective
+    CargandoDirective,
+    VinoTintoPipe,
+    MayusculaPipe,
+    SinAsignarPipe
   ],
   imports: [
     BrowserModule,
