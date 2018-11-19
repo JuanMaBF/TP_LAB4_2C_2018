@@ -16,7 +16,6 @@ export class PedidoService {
         return this.httpService
             .post('traerTodos', '')
             .then(rta => {
-                console.log(rta);
                 let resp = this.handleRta(rta);
                 if(resp) {
                     return rta.json() as Array<Pedido>;

@@ -12,7 +12,8 @@ class PedidoService extends BaseService {
             while($row = $result->fetch_assoc()) {
                 //return $row;
                 array_push($listaPedidos, new Pedido($row['Id'], $row['Nombre'], $row['Cantidad']
-                    ,$row['Estado'], $row['Asignado'], $row['Iniciado'],$row['Estimado'], $row['Mesa']));
+                    ,$row['Estado'], $row['Asignado'], $row['Iniciado'],$row['Estimado'], $row['Mesa']
+                    , $row['Mozo']));
             }
         }
         $conn->close();
@@ -21,9 +22,9 @@ class PedidoService extends BaseService {
 
     public static function Alta($pedido) {
         $conn = parent::doConnection();
-        $sql = "INSERT INTO Lab4SP.Pedidos (Nombre, Cantidad, Estado, Asignado, Iniciado, Mesa) 
-                VALUES ('$pedido->nombre', '$pedido->cantidad', '$pedido->estado', 
-                        '$pedido->asignado', '$pedido->iniciado', '$pedido->mesa')";
+        $sql = "INSERT INTO Lab4SP.Pedidos (Nombre, Cantidad, Estado, Asignado, Iniciado, Mesa, Mozo) 
+                VALUES ('$pedido->nombre', '$pedido->cantidad', '$pedido->estado', '$pedido->asignado'
+                        , '$pedido->iniciado', '$pedido->mesa', '$pedido->mozo')";
         $conn->query($sql);
         $conn->close();
         return 'ok';

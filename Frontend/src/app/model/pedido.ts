@@ -7,6 +7,7 @@ export class Pedido {
     public iniciado: string;
     public estimado: string;
     public mesa: string;
+    public mozo: string;
 
     constructor() {
     }

@@ -22,33 +22,188 @@ import * as Highcharts from 'highcharts';
             .traerTodos(token)
             .then(pedidos => { 
                 this.allPedidos = pedidos;
-                this.initChart();
-                console.log(pedidos);
+                this.initItemsChart();
+                this.initMesaChart();
+                this.initMozoChart();
             });
     }
 
-    private initChart(): void {
+    private initItemsChart(): void {
+       let vinoTinto = this.countItems('nombre', 'Vino tinto');
+       let vinoBlanco = this.countItems('nombre', 'Vino blanco');
+       let cervezaRubia = this.countItems('nombre', 'Cerveza rubia');
+       let cervezaNegra = this.countItems('nombre', 'Cerveza negra');
+       let empanada = this.countItems('nombre', 'Empanada');
+       let tarta = this.countItems('nombre', 'Tarta');
+       let torta = this.countItems('nombre', 'Torta');
         $(function () { 
-            var myChart = Highcharts.chart('container', {
-                chart: { type: 'bar' },
-                title: { text: 'Fruit Consumption' },
-                xAxis: {
-                    categories: ['Apples', 'Bananas', 'Oranges']
+            Highcharts.chart('containerItems', {
+                chart: {
+                    type: 'column'
                 },
-                yAxis: {
-                    title: {
-                        text: 'Fruit eaten'
+                title: {
+                    text: 'Items más pedidos'
+                },
+                subtitle: {
+                    text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+                },
+                xAxis: {
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
                     }
                 },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Items pedidos totales'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: 'Se pidieron un total de <b>{point.y:.0f}</b>'
+                },
                 series: [{
-                    name: 'Jane',
-                    data: [1, 0, 4]
-                }, {
-                    name: 'John',
-                    data: [5, 7, 3]
+                    name: 'Items',
+                    data: [
+                        ['Vino tinto', vinoTinto],
+                        ['Vino blanco', vinoBlanco],
+                        ['Cerveza rubia', cervezaRubia],
+                        ['Cerveza negra', cervezaNegra],
+                        ['Empanada', empanada],
+                        ['Tarta', tarta],
+                        ['Torta', torta]
+                    ],
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        format: '{point.y:.0f}', // one decimal
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
                 }]
             });
         });
+    }
+
+    private initMesaChart(): void {
+        let mesa1 = this.countItems('mesa', '1');
+        let mesa2 = this.countItems('mesa', '2');
+        let mesa3 = this.countItems('mesa', '3');
+        let mesa4 = this.countItems('mesa', '4');
+        let mesa5 = this.countItems('mesa', '5');
+        $(function() {
+            Highcharts.chart('containerMesas', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Pedidos por mesa'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            enabled: true,
+                            distance: -50,
+                            style: {
+                                fontWeight: 'bold',
+                                color: 'white'
+                            }
+                        },
+                        startAngle: -90,
+                        endAngle: 90,
+                        center: ['50%', '75%'],
+                        size: '110%'
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Pedidos por mesa',
+                    innerSize: '50%',
+                    data: [
+                        ['1', mesa1],
+                        ['2', mesa2],
+                        ['3', mesa3],
+                        ['4', mesa4],
+                        ['5', mesa5],
+                    ]
+                }]
+            });
+        });
+    }
+
+    private initMozoChart(): void {
+        let data = new Array<any>();
+        this.allPedidos.forEach( p => {
+            let find = data.find(d => d.name == p.mozo);
+            if(find) {
+                find.y += Number.parseInt(p.cantidad);
+            } else {
+                data.push({
+                    name: p.mozo,
+                    y: Number.parseInt(p.cantidad)
+                })
+            }
+        })
+
+        $(function() {
+            Highcharts.chart('containerMozo', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Porcentaje de pedidos por mozo'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Porcentaje',
+                    colorByPoint: true,
+                    data: data
+                }]
+            });
+        })
+    }
+
+    private countItems(property: string, item: string) {
+        let acum = 0;
+        this.allPedidos.filter(p => p[property] == item).forEach(p => {
+            acum += Number.parseInt(p.cantidad);
+        });
+        return acum;
     }
 
 }

@@ -37,10 +37,10 @@ import { AuthService } from "src/app/services/auth.service";
                 pedidosValid = false;
                 this.errorMessage = 'Complete todos los campos';
             } else {
-                p.asignado = currentUser['user'];
                 p.estado = 'Pendiente';
                 p.iniciado = new Date().toLocaleString();
                 p.mesa = this.mesa;
+                p.mozo = currentUser['user'];
             }
         });
         if(pedidosValid) {
