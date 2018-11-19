@@ -20,6 +20,7 @@ import exporting from 'highcharts/modules/exporting.src.js';
 import { Ng2UploaderModule } from 'ng2-uploader';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
+import { ExcelService } from './services/excel.service';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -56,6 +57,7 @@ let router: Routes = [
     HttpService,
     AuthService,
     PedidoService,
+    ExcelService,
     { provide: HIGHCHARTS_MODULES, useFactory: ()=>{return [exporting]} }
   ],
   bootstrap: [AppComponent]

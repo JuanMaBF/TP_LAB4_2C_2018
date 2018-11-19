@@ -52,7 +52,7 @@ import { Router } from "@angular/router";
     }
 
     public handleRta(rta: any): void {
-        if(rta.error == "usrError") {
+        if(rta.error == "usrExist") {
             this.errorMsg = "Este usuario ya existe";
         } else if(rta.error == "passError") {
             this.errorMsg = "Error en el servidor.";

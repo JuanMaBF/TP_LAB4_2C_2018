@@ -3,6 +3,7 @@ import { Pedido } from "src/app/model/pedido";
 import { PedidoService } from "src/app/services/pedido.service";
 import { AuthService } from "src/app/services/auth.service";
 import * as Highcharts from 'highcharts';
+import { ExcelService } from "src/app/services/excel.service";
 
 @Component({
     selector: 'estadisticas',
@@ -12,7 +13,8 @@ import * as Highcharts from 'highcharts';
     public allPedidos: Array<Pedido> = new Array<Pedido>();
 
     constructor(private pedidosService: PedidoService,
-        public authService: AuthService) {
+        public authService: AuthService,
+        public excelService: ExcelService) {
             this.treerTodos();
     }
 
@@ -195,7 +197,7 @@ import * as Highcharts from 'highcharts';
                     data: data
                 }]
             });
-        })
+        });
     }
 
     private countItems(property: string, item: string) {
@@ -204,6 +206,60 @@ import * as Highcharts from 'highcharts';
             acum += Number.parseInt(p.cantidad);
         });
         return acum;
+    }
+
+    public exportItemsExcel(): void {
+        let vinoTinto = this.countItems('nombre', 'Vino tinto');
+        let vinoBlanco = this.countItems('nombre', 'Vino blanco');
+        let cervezaRubia = this.countItems('nombre', 'Cerveza rubia');
+        let cervezaNegra = this.countItems('nombre', 'Cerveza negra');
+        let empanada = this.countItems('nombre', 'Empanada');
+        let tarta = this.countItems('nombre', 'Tarta');
+        let torta = this.countItems('nombre', 'Torta');
+
+        let data = [
+            {Item: 'Vino tinto', Cantidad: vinoTinto},
+            {Item: 'Vino blanco', Cantidad: vinoBlanco},
+            {Item: 'Cerveza rubia', Cantidad: cervezaRubia},
+            {Item: 'Cerveza negra', Cantidad: cervezaNegra},
+            {Item: 'Empanada', Cantidad: empanada},
+            {Item: 'Tarta', Cantidad: tarta},
+            {Item: 'Torta', Cantidad: torta}
+        ];
+        this.excelService.exportAsExcelFile(data, 'Items');
+    }
+
+    public exportMesasExcel(): void {
+        let mesa1 = this.countItems('mesa', '1');
+        let mesa2 = this.countItems('mesa', '2');
+        let mesa3 = this.countItems('mesa', '3');
+        let mesa4 = this.countItems('mesa', '4');
+        let mesa5 = this.countItems('mesa', '5');
+
+        let data = [
+            { Mesa: '1', Pedidos: mesa1 },
+            { Mesa: '2', Pedidos: mesa2 },
+            { Mesa: '3', Pedidos: mesa3 },
+            { Mesa: '4', Pedidos: mesa4 },
+            { Mesa: '5', Pedidos: mesa5 }
+        ];
+        this.excelService.exportAsExcelFile(data, 'Mesas');
+    }
+
+    public exportMozosExcel(): void {
+        let data = new Array<any>();
+        this.allPedidos.forEach( p => {
+            let find = data.find(d => d.Mozo == p.mozo);
+            if(find) {
+                find.Cantidad += Number.parseInt(p.cantidad);
+            } else {
+                data.push({
+                    Mozo: p.mozo,
+                    Cantidad: Number.parseInt(p.cantidad)
+                })
+            }
+        });
+        this.excelService.exportAsExcelFile(data, 'Mozos');
     }
 
 }
