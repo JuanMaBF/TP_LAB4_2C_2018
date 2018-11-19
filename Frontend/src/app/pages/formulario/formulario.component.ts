@@ -116,7 +116,7 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
                 .showClose(false)
                 .title('Error')
                 .body('El archivo es demasiado pesado')
-                .open()
+                .open();
         } else if (extension != 'jpg' && extension != 'png'){
             uploadingFile.setAbort();
             this.modal.alert()
@@ -124,7 +124,7 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
                 .showClose(false)
                 .title('Error')
                 .body('Solo se pueden subir imágenes en formato PNG o JPG')
-                .open()
+                .open();
         }
     }
 

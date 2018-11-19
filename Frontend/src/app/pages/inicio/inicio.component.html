@@ -18,7 +18,7 @@
                         </select>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary">Actualizar</button>
+                        <button (click)="this.getAllWithState('Pendiente')" type="button" class="btn btn-primary">Actualizar</button>
                         <button [routerLink]="['/formulario']" type="button" class="btn btn-secondary">Nuevo</button>
                         <button [routerLink]="['/estadisticas']" type="button" class="btn btn-info">Estadísticas</button>
                     </div>
@@ -33,42 +33,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Vino</td>
-                                <td>3</td>
+                            <tr *ngFor="let ped of pedidos">
+                                <td>{{ped.nombre}}</td>
+                                <td>{{ped.cantidad}}</td>
                                 <td>
-                                    <select id="select-vino-1" class="form-control">
+                                    <select [(ngModel)]="ped.estado" id="select-vino-1" class="form-control">
                                         <option>Pendiente</option>
                                         <option>En preparación</option>
                                         <option>Listo para servir</option>
                                         <option>Terminado</option>
                                     </select>
                                 </td>
-                                <td><button>ver</button></td>
-                            </tr>
-                            <tr>
-                                <td>Vino</td>
-                                <td>3</td>
-                                <td>
-                                    <select id="select-vino-1" class="form-control">
-                                        <option>Pendiente</option>
-                                        <option>En preparación</option>
-                                        <option>Listo para servir</option>
-                                        <option>Terminado</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Vino</td>
-                                <td>3</td>
-                                <td>
-                                    <select id="select-vino-1" class="form-control">
-                                        <option>Pendiente</option>
-                                        <option>En preparación</option>
-                                        <option>Listo para servir</option>
-                                        <option>Terminado</option>
-                                    </select>
-                                </td>
+                                <td><button class="btn btn-info" (click)="verDetalle(ped)">ver</button></td>
                             </tr>
                         </tbody>
                 </table>
