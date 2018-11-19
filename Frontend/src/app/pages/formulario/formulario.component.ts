@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Pedido } from "src/app/model/pedido";
 import { PedidoService } from "src/app/services/pedido.service";
 import { AuthService } from "src/app/services/auth.service";
+import { Modal } from 'ngx-modialog/plugins/bootstrap';
 
 @Component({
     selector: 'formulario',
@@ -50,7 +51,8 @@ import { AuthService } from "src/app/services/auth.service";
     public sizeLimit = 2000000;
     
     constructor(private pedidosService: PedidoService,
-        public authService: AuthService) {
+        private authService: AuthService,
+        private modal: Modal) {
         this.addPedido();
     }
 
@@ -79,7 +81,7 @@ import { AuthService } from "src/app/services/auth.service";
                 p.mesa = this.mesa;
                 p.mozo = currentUser['user'];
             }
-        });
+        }); 
         if(pedidosValid) {
             this.pedidosService
                 .altaPedidos(currentUser.token, this.pedidosList)
@@ -87,6 +89,7 @@ import { AuthService } from "src/app/services/auth.service";
                     this.mesa = "";
                     this.pedidosList = new Array<Pedido>();
                     this.addPedido();
+                    this.errorMessage = "";
                 });
         }
     }
@@ -108,10 +111,20 @@ import { AuthService } from "src/app/services/auth.service";
             .toLowerCase();
         if (uploadingFile.size > this.sizeLimit) {
             uploadingFile.setAbort();
-            alert('File is too large');
+            this.modal.alert()
+                .size('lg')
+                .showClose(false)
+                .title('Error')
+                .body('El archivo es demasiado pesado')
+                .open()
         } else if (extension != 'jpg' && extension != 'png'){
             uploadingFile.setAbort();
-            alert('solo se puede jpg y png');
+            this.modal.alert()
+                .size('lg')
+                .showClose(false)
+                .title('Error')
+                .body('Solo se pueden subir imágenes en formato PNG o JPG')
+                .open()
         }
     }
 

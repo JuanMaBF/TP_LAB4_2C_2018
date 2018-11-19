@@ -26,3 +26,11 @@ nav h2 {
     width: 100%;
     margin-left: 0px !important;
 }
+
+.invisible-btn {
+    display: none;
+}
+
+.margin-img {
+    margin-left: 25%;
+}

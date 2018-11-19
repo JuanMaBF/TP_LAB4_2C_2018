@@ -18,6 +18,8 @@ import { EstadisticasComponent } from './pages/estadisticas/estadisticas.compone
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import exporting from 'highcharts/modules/exporting.src.js';
 import { Ng2UploaderModule } from 'ng2-uploader';
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -46,7 +48,9 @@ let router: Routes = [
     RecaptchaModule.forRoot(),
     NgbModule.forRoot(),
     ChartModule,
-    Ng2UploaderModule
+    Ng2UploaderModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
   providers: [
     HttpService,
