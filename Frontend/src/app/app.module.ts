@@ -21,6 +21,8 @@ import { Ng2UploaderModule } from 'ng2-uploader';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 import { ExcelService } from './services/excel.service';
+import { HighlightDirective } from './directives/highlight.directive';
+import { RowHighlightDirective } from './directives/row-highlight.directive';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -39,7 +41,9 @@ let router: Routes = [
     UsuarioComponent,
     RegistroComponent,
     FormularioComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    HighlightDirective,
+    RowHighlightDirective
   ],
   imports: [
     BrowserModule,

@@ -52,6 +52,7 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
             .title('Detalle')
             .body(html)
             .open()
+        this.isCurrentUser('s');
     }
 
     public logout(): void {
@@ -61,6 +62,11 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
             .showClose(false)
             .body('Sesion cerrada')
             .open()
+    }
+
+    public isCurrentUser(name: string) {
+        let user = this.authService.getCurrentUser().user;
+        return name == user;
     }
 
 }
