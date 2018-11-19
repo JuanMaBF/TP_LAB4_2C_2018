@@ -52,7 +52,15 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
             .title('Detalle')
             .body(html)
             .open()
+    }
 
+    public logout(): void {
+        this.authService.logout();
+        this.modal.alert()
+            .size('lg')
+            .showClose(false)
+            .body('Sesion cerrada')
+            .open()
     }
 
 }

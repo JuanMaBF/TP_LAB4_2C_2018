@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpService } from "./http.service";
 import { Usuario } from "../model/usuario";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthService {
 
-    constructor(private httpService: HttpService) {
+    constructor(private httpService: HttpService,
+        private router: Router) {
     }
 
     public login(usuario: Usuario): Promise<any> {
@@ -22,6 +24,7 @@ export class AuthService {
 
     public logout() {
         localStorage.removeItem('comanda-usr');
+        this.router.navigate(['login']);
     }
 
     public getCurrentUser() {
