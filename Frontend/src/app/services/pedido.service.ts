@@ -14,7 +14,7 @@ export class PedidoService {
 
     public traerTodos(token: string): Promise<any> {
         return this.httpService
-            .post('traerTodos', '')
+            .post('traerTodos', token)
             .then(rta => {
                 let resp = this.handleRta(rta);
                 if(resp) {

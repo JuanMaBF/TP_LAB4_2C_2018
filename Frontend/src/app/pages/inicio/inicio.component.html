@@ -17,7 +17,7 @@
                         </select>
                     </div>
                     <div class="btn-group" role="group">
-                        <button (click)="this.getAllWithState('Pendiente')" type="button" class="btn btn-primary">Actualizar</button>
+                        <button (click)="this.onFilterChange('Pendiente')" type="button" class="btn btn-primary">Actualizar</button>
                         <button [routerLink]="['/formulario']" type="button" class="btn btn-secondary">Nuevo</button>
                         <button [routerLink]="['/estadisticas']" type="button" class="btn btn-info">Estadísticas</button>
                     </div>

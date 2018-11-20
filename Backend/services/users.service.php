@@ -7,7 +7,7 @@ class UsersService extends BaseService {
 
     public static function TraerPorUsuario($usuario) {
         $conn = parent::doConnection();
-        $result = $conn->query("SELECT * FROM Lab4SP.Usuarios WHERE User = '$usuario'");
+        $result = $conn->query("SELECT * FROM id7281007_labtp.Usuarios WHERE User = '$usuario'");
         if ($result != null && $result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 return new Usuario($row['User'], $row['Pass'], $row['Type']);
@@ -21,7 +21,7 @@ class UsersService extends BaseService {
         $foundUser = UsersService::TraerPorUsuario($user);
         if($foundUser == "NO-EXISTE") {
             $conn = parent::doConnection();
-            $sql = "INSERT INTO Lab4SP.Usuarios (User, Pass, Type) 
+            $sql = "INSERT INTO id7281007_labtp.Usuarios (User, Pass, Type) 
                     VALUES ('$user', '$pass', '$tipo')";
             $result = $conn->query($sql);
             $conn->close();

@@ -4,6 +4,7 @@ import { PedidoService } from "src/app/services/pedido.service";
 import { AuthService } from "src/app/services/auth.service";
 import * as Highcharts from 'highcharts';
 import { ExcelService } from "src/app/services/excel.service";
+declare var $: any;
 
 @Component({
     selector: 'estadisticas',

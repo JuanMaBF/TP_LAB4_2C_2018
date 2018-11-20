@@ -17,7 +17,6 @@ import { PedidoService } from './services/pedido.service';
 import { EstadisticasComponent } from './pages/estadisticas/estadisticas.component';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import exporting from 'highcharts/modules/exporting.src.js';
-import { Ng2UploaderModule } from 'ng2-uploader';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 import { ExcelService } from './services/excel.service';
@@ -28,6 +27,7 @@ import { VinoTintoPipe } from './pipes/vino-tinto.pipe';
 import { MayusculaPipe } from './pipes/mayuscula.pipe';
 import { SinAsignarPipe } from './pipes/sin-asignar.pipe';
 import { InformacionComponent } from './pages/informacion/informacion.component';
+import { Ng2UploaderModule } from './ng2-uploader';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
