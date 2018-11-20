@@ -22,22 +22,24 @@
                         <button [routerLink]="['/estadisticas']" type="button" class="btn btn-info">Estadísticas</button>
                     </div>
                 </div>
-                <table id="tabla-pedidos" class="table mt-3">
-                        <thead>
+                <br/>
+                <p-table [value]="pedidos" id="tabla-pedidos" class="table mt-3">
+                        <ng-template pTemplate="header">
                             <tr>
                             <th scope="col">Pedido</th>
-                            <th scope="col">Cantidad</th>
+                            <th scope="col" *ngIf="!isMobile">Cantidad</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Detalle</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let ped of pedidos" RowHighlight>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-ped>
+                            <tr RowHighlight>
                                 <td>
-                                    <span Highlight
-                                        [highlightColor]='isCurrentUser(ped.mozo)'>{{ped.nombre | mayuscula | vinoTinto}}</span>
+                                    <span Highlight [highlightColor]='isCurrentUser(ped.mozo)'>
+                                        {{ped.nombre | mayuscula | vinoTinto}}
+                                    </span>
                                 </td>
-                                <td>{{ped.cantidad}}</td>
+                                <td *ngIf="!isMobile">{{ped.cantidad}}</td>
                                 <td>
                                     <select [(ngModel)]="ped.estado" 
                                         class="{{'form-control' | sinAsignar:ped.estado}}"
@@ -50,8 +52,8 @@
                                 </td>
                                 <td><button class="btn btn-info" (click)="verDetalle(ped)">ver</button></td>
                             </tr>
-                        </tbody>
-                </table>
+                        </ng-template>
+                </p-table>
             </div>
         </div>     
 

@@ -21,6 +21,7 @@ import { routerTransition } from "src/app/animations/transition.animation";
             padding-top: 10px;
             padding-left: 10px;
             padding-bottom: 10px;
+            margin-bottom: -5px;
             .footer-block {
                 margin: 20px 0;
             }
@@ -30,6 +31,7 @@ import { routerTransition } from "src/app/animations/transition.animation";
 
     public pedidos: Array<Pedido>;
     public currentFilter: string;
+    public isMobile: boolean;
 
     constructor(private router: Router,
         private pedidosService: PedidoService,
@@ -47,6 +49,7 @@ import { routerTransition } from "src/app/animations/transition.animation";
         if(!usr) {
             this.router.navigate(['login']);
         }
+        this.isMobile = window.screen.width < 440;
     }
 
     private getAllWithState(state: string): void {

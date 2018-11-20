@@ -32,6 +32,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -74,7 +75,8 @@ let router: Routes = [
     InputTextModule,
     DropdownModule,
     PasswordModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TableModule
   ],
   providers: [
     HttpService,
