@@ -32,7 +32,11 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
         private pedidosService: PedidoService,
         private authService: AuthService,
         private modal: Modal) {
-        this.getAllWithState('Pendiente');
+        if(this.authService.getCurrentUser()) {
+            this.getAllWithState('Pendiente');
+        } else {
+            this.router.navigate['/login'];
+        }
     }
 
     public ngOnInit(): void {
