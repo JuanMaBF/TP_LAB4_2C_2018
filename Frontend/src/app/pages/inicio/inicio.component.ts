@@ -4,10 +4,13 @@ import { PedidoService } from "src/app/services/pedido.service";
 import { Pedido } from "src/app/model/pedido";
 import { AuthService } from "src/app/services/auth.service";
 import { Modal } from 'ngx-modialog/plugins/bootstrap';
+import { routerTransition } from "src/app/animations/transition.animation";
 
 @Component({
     selector: 'inicio',
     templateUrl: './inicio.component.html',
+    animations: [routerTransition()],
+    host: {'[@routerTransition]': ''},
     styles: [`
         #footer {
             bottom: 0;
