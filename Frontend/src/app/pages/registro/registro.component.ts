@@ -6,7 +6,11 @@ import { Router } from "@angular/router";
 @Component({
     selector: 'registro',
     templateUrl: './registro.component.html',
-    styleUrls: []
+    styles: [`
+        input {
+            width: 100%;
+        }
+    `]
 }) export class RegistroComponent {
     
     public usr: string

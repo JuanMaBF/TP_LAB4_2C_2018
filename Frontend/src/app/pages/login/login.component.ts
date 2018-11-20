@@ -6,7 +6,11 @@ import { Router } from "@angular/router";
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styleUrls: []
+    styles: [`
+        input {
+            width: 100%;
+        }
+    `]
 }) export class LoginComponent {
     
     public usr: string

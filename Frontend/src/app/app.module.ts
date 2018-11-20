@@ -28,6 +28,7 @@ import { MayusculaPipe } from './pipes/mayuscula.pipe';
 import { SinAsignarPipe } from './pipes/sin-asignar.pipe';
 import { InformacionComponent } from './pages/informacion/informacion.component';
 import { Ng2UploaderModule } from './ng2-uploader';
+import { InputTextModule } from 'primeng/inputtext';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -66,7 +67,8 @@ let router: Routes = [
     ChartModule,
     Ng2UploaderModule,
     ModalModule.forRoot(),
-    BootstrapModalModule
+    BootstrapModalModule,
+    InputTextModule
   ],
   providers: [
     HttpService,

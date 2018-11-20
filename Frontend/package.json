@@ -31,6 +31,8 @@
     "ng-recaptcha": "^4.2.1",
     "ng2-uploader": "^1.6.2",
     "ngx-modialog": "^5.0.1",
+    "primeicons": "^1.0.0",
+    "primeng": "^6.1.6",
     "rxjs": "^6.0.0",
     "xlsx": "^0.14.1",
     "zone.js": "~0.8.26"
