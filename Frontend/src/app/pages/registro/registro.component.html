@@ -13,23 +13,19 @@
                     <br>
                     <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
-                        <input [(ngModel)]="pass" type="password" pInputText placeholder="Contraseña">         
+                        <input [(ngModel)]="pass" type="password" pPassword placeholder="Contraseña">         
                     </div>
                     <br>
                     <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
-                        <input [(ngModel)]="confirmPass" type="password" pInputText placeholder="Confirmar contraseña">         
+                        <input [(ngModel)]="confirmPass" type="password" pPassword placeholder="Confirmar contraseña">         
                     </div>
                     <br>
-                    <select [(ngModel)]="type" name="type" class="form-control">
-                        <option disabled selected>Tipo de usuario</option>
-                        <option>Mozo</option>
-                        <option>Cocinero</option>
-                        <option>Encargado</option>
-                    </select>   
-                    <br>
+                    <p-dropdown [options]="tiposUsuario" [autoWidth]="false" [(ngModel)]="type"></p-dropdown>
+                    <br/>
+                    <br/>
                     <re-captcha (resolved)="resolved($event)" siteKey="6LeAvXkUAAAAABEmWDheifWo_PFXmYKTpEdu7_e-"></re-captcha>
-                    <br>
+                    <br/>
                     <span class="text-warning">
                         {{errorMsg}}
                     </span>

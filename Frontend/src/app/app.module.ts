@@ -29,6 +29,9 @@ import { SinAsignarPipe } from './pipes/sin-asignar.pipe';
 import { InformacionComponent } from './pages/informacion/informacion.component';
 import { Ng2UploaderModule } from './ng2-uploader';
 import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { DropdownModule } from 'primeng/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -68,7 +71,10 @@ let router: Routes = [
     Ng2UploaderModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
-    InputTextModule
+    InputTextModule,
+    DropdownModule,
+    PasswordModule,
+    BrowserAnimationsModule
   ],
   providers: [
     HttpService,

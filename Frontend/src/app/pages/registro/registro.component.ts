@@ -13,6 +13,7 @@ import { Router } from "@angular/router";
     `]
 }) export class RegistroComponent {
     
+    public tiposUsuario: Array<any>;
     public usr: string
     public pass: string;
     public confirmPass: string;
@@ -22,6 +23,11 @@ import { Router } from "@angular/router";
 
     constructor(private authService: AuthService,
         private router: Router) {
+        this.tiposUsuario = [
+            {label:'Mozo', value: 'Mozo'},
+            {label:'Encargado', value: 'Encargado'},
+            {label:'Cocinero', value: 'Cocinero'},
+        ]
     }
 
     public registro(): void {

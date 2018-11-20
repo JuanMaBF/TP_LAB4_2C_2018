@@ -40,3 +40,7 @@ nav h2 {
 .fc-err {
     border-color: red !important;
 }
+
+.ui-dropdown    {
+    width:100% !important;
+}
