@@ -33,6 +33,7 @@ import { PasswordModule } from 'primeng/password';
 import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -76,7 +77,8 @@ let router: Routes = [
     DropdownModule,
     PasswordModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
+    ButtonModule
   ],
   providers: [
     HttpService,

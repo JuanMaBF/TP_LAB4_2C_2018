@@ -44,3 +44,7 @@ nav h2 {
 .ui-dropdown    {
     width:100% !important;
 }
+
+.ui-button .ui-button-text {
+    display: none !important;
+}

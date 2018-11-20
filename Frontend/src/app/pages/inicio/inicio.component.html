@@ -17,9 +17,9 @@
                         </select>
                     </div>
                     <div class="btn-group" role="group">
-                        <button (click)="this.onFilterChange('Pendiente')" type="button" class="btn btn-primary">Actualizar</button>
-                        <button [routerLink]="['/formulario']" type="button" class="btn btn-secondary">Nuevo</button>
-                        <button [routerLink]="['/estadisticas']" type="button" class="btn btn-info">Estadísticas</button>
+                        <button (click)="this.onFilterChange('Pendiente')" type="button" class="btn btn-primary"><i class="pi pi-refresh" style="font-size: 2em"></i></button>
+                        <button [routerLink]="['/formulario']" type="button" class="btn btn-secondary"><i class="pi pi-plus" style="font-size: 2em"></i></button>
+                        <button [routerLink]="['/estadisticas']" type="button" class="btn btn-info"><i class="pi pi-chart-bar" style="font-size: 2em"></i></button>
                     </div>
                 </div>
                 <br/>
@@ -29,7 +29,7 @@
                             <th scope="col">Pedido</th>
                             <th scope="col" *ngIf="!isMobile">Cantidad</th>
                             <th scope="col">Estado</th>
-                            <th scope="col">Detalle</th>
+                            <th scope="col" style="width: 55px;"></th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-ped>
@@ -50,7 +50,7 @@
                                         <option>Terminado</option>
                                     </select>
                                 </td>
-                                <td><button class="btn btn-info" (click)="verDetalle(ped)">ver</button></td>
+                                <td><button pButton class="btn btn-info" (click)="verDetalle(ped)"><i class="pi pi-ellipsis-v" style="font-size: 2em"></i></button></td>
                             </tr>
                         </ng-template>
                 </p-table>
