@@ -90,7 +90,7 @@ import { routerTransition } from "src/app/animations/transition.animation";
             <b>Mesa</b>: ${pedido.mesa} </br>
             <b>Mozo</b>: ${pedido.mozo} </br>`;
             if(pedido.imgName) {
-                html += `<b>Foto</b>:<img width="100%" src="https://apitplav.000webhostapp.com/uploads/${pedido.imgName}"/>`;
+                html += `<b>Foto</b>:<img width="100%" src="https://firebasestorage.googleapis.com/v0/b/tplab4-3498e.appspot.com/o/${pedido.imgName}?alt=media&token=8d6b919e-63c6-4998-ad7b-f041dd13ace7"/>`;
             }
         
         this.modal.alert()

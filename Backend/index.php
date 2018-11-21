@@ -83,6 +83,39 @@
         return 'TokenExpirado';
     });
 
+    $app->post('/uploadFile', function(Request $request, Response $response) {
+        $directory = $this->get('upload_directory');
+    
+        $uploadedFiles = $request->getUploadedFiles();
+    
+        return json_encode($_FILES['file']);
+
+        /*// handle single input with single file upload
+        $uploadedFile = $uploadedFiles['example1'];
+        if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
+            $filename = moveUploadedFile($directory, $uploadedFile);
+            $response->write('uploaded ' . $filename . '<br/>');
+        }
+    
+    
+        // handle multiple inputs with the same key
+        foreach ($uploadedFiles['example2'] as $uploadedFile) {
+            if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
+                $filename = moveUploadedFile($directory, $uploadedFile);
+                $response->write('uploaded ' . $filename . '<br/>');
+            }
+        }
+    
+        // handle single input with multiple file uploads
+        foreach ($uploadedFiles['example3'] as $uploadedFile) {
+            if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
+                $filename = moveUploadedFile($directory, $uploadedFile);
+                $response->write('uploaded ' . $filename . '<br/>');
+            }
+        }*/
+    
+    });
+
     $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
         $handler = $this->notFoundHandler; 
         return $handler($req, $res);

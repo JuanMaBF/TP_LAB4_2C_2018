@@ -5,8 +5,8 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
 @Injectable()
 export class HttpService {
 
-    //private baseUrl = 'https://apitplav.000webhostapp.com/index.php/';
-    private baseUrl = 'http://lvh.me/TP_LAB4_2C_2018/Backend/index.php/';
+    private baseUrl = 'https://apitplav.000webhostapp.com/index.php/';
+    //private baseUrl = 'http://lvh.me/TP_LAB4_2C_2018/Backend/index.php/';
 
     constructor(private http: Http,
         private modal: Modal) {
@@ -28,7 +28,6 @@ export class HttpService {
             .post(this.baseUrl + url, JSON.stringify(data))
             .toPromise()
             .then(resp => {
-                console.log(resp);
                 this.showSpinner();
                 return resp;
             })

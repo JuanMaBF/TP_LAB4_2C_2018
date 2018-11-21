@@ -3,6 +3,7 @@ import { Pedido } from "src/app/model/pedido";
 import { PedidoService } from "src/app/services/pedido.service";
 import { AuthService } from "src/app/services/auth.service";
 import { Modal } from 'ngx-modialog/plugins/bootstrap';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Component({
     selector: 'formulario',
@@ -42,17 +43,14 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
     public mesa: string;
     public pedidosList: Array<Pedido> = new Array<Pedido>();
     public errorMessage: string;
-    public uploadFile: any;
-    public hasBaseDropZoneOver: boolean = false;
-    public options = { 
-        url: 'http://lvh.me/TP_LAB4_2C_2018/Backend/subirImagen.php'
-    };
-    public sizeLimit = 2000000;
     public fileName: string;
+    public fileLink: string;
+    public showSpinner: boolean = false;
     
     constructor(private pedidosService: PedidoService,
         private authService: AuthService,
-        private modal: Modal) {
+        private modal: Modal,
+        private afStorage: AngularFireStorage) {
         this.addPedido();
     }
 
@@ -91,43 +89,25 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
                     this.pedidosList = new Array<Pedido>();
                     this.addPedido();
                     this.errorMessage = "";
+                    this.deleteImg();
                 });
         }
     }
 
-    handleUpload(data): void {
-        if (data && data.response) {
-          data = JSON.parse(data.response);
-          this.fileName = data.generatedName;
-        }
-        //setTimeout(console.clear.bind(console), 10);
-    }
-     
-    fileOverBase(e:any):void {
-        this.hasBaseDropZoneOver = e;
-    }
-    
-    beforeUpload(uploadingFile): void {
-        let extension = uploadingFile.originalName
-            .substr(uploadingFile.originalName.lastIndexOf('.') + 1)
-            .toLowerCase();
-        if (uploadingFile.size > this.sizeLimit) {
-            uploadingFile.setAbort();
-            this.modal.alert()
-                .size('lg')
-                .showClose(false)
-                .title('Error')
-                .body('El archivo es demasiado pesado')
-                .open();
-        } else if (extension != 'jpg' && extension != 'png'){
-            uploadingFile.setAbort();
-            this.modal.alert()
-                .size('lg')
-                .showClose(false)
-                .title('Error')
-                .body('Solo se pueden subir imágenes en formato PNG o JPG')
-                .open();
-        }
+    public uploadFile(event) {
+        this.showSpinner = true;
+        let timeStamp = (Math.floor(Date.now() / 1000)).toString();
+        let ref = this.afStorage.ref(timeStamp);
+        ref.put(event.target.files[0]).then(() => {
+            this.fileName = timeStamp;
+            this.fileLink = "https://firebasestorage.googleapis.com/v0/b/tplab4-3498e.appspot.com/o/" + this.fileName + "?alt=media&token=8d6b919e-63c6-4998-ad7b-f041dd13ace7"
+            this.showSpinner = false;
+        });
+      }
+
+    public deleteImg() {
+        this.fileName = undefined;
+        this.fileLink = undefined;
     }
 
 }

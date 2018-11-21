@@ -50,12 +50,13 @@
                             <br/>
                             <label class="file-button">
                                 Subir foto de la mesa
-                                <input type="file"
-                                    ngFileSelect
-                                    [options]="options"
-                                    (onUpload)="handleUpload($event)"
-                                    (beforeUpload)="beforeUpload($event)">
+                                <input type="file" (change)="uploadFile($event)" accept=".png,.jpg">
                             </label>
+                            <br/>
+                                <img style="width: 30px" [hidden]="!showSpinner" src="https://static.centro.org.uk/XnwmAssets/img/spinner.gif"/>
+                                <img style="width: 100%" [hidden]="!fileName" [src]="fileLink">
+                                <button style="width: 100%" [hidden]="!fileName" type="button" (click)="deleteImg()" class="btn btn-sm btn-danger">X</button>
+                                <br [hidden]="!fileName"/>
                             <br/>
                             <button (click)="addPedido()" type="button" class="btn btn-info">Agregar</button>
                             <button (click)="cargarPedidos()" type="button" class="btn btn-primary">Cargar</button>

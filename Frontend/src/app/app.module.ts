@@ -35,6 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { UserDisabledDirective } from './directives/user-disabled.directive';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireModule } from '@angular/fire';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -43,7 +45,7 @@ let router: Routes = [
   { path: 'usuario', component: UsuarioComponent},
   { path: 'formulario', component: FormularioComponent},
   { path: 'estadisticas', component: EstadisticasComponent},
-  { path: 'informacion', component: InformacionComponent},
+  { path: 'informacion', component: InformacionComponent}
 ];
 
 @NgModule({
@@ -80,7 +82,16 @@ let router: Routes = [
     PasswordModule,
     BrowserAnimationsModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyDYUcDad9Eb6oqRo9svKEtvyRTWcxHzXZM",
+      authDomain: "tplab4-3498e.firebaseapp.com",
+      databaseURL: "https://tplab4-3498e.firebaseio.com",
+      projectId: "tplab4-3498e",
+      storageBucket: "tplab4-3498e.appspot.com",
+      messagingSenderId: "447742251777"
+    }),
+    AngularFireStorageModule
   ],
   providers: [
     HttpService,
