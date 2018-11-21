@@ -50,6 +50,7 @@ import { routerTransition } from "src/app/animations/transition.animation";
             this.router.navigate(['login']);
         }
         this.isMobile = window.screen.width < 440;
+        
     }
 
     private getAllWithState(state: string): void {
@@ -58,6 +59,7 @@ import { routerTransition } from "src/app/animations/transition.animation";
             .traerTodos(token)
             .then(rta => { 
                 let todos = rta as Array<Pedido>;
+                todos = todos.reverse();
                 this.pedidos = todos.filter(p => p.estado == state);
             });
         this.currentFilter = state;
@@ -84,6 +86,10 @@ import { routerTransition } from "src/app/animations/transition.animation";
             <b>Tiempo estimado</b>: ${pedido.estimado ? pedido.estado :"<i>Sin definir</i>"} </br>
             <b>Mesa</b>: ${pedido.mesa} </br>
             <b>Mozo</b>: ${pedido.mozo} </br>`;
+            console.log(pedido.imgName);
+            if(pedido.imgName) {
+                html += `<b>Foto</b>:<img width="100%" src="https://apitplav.000webhostapp.com/uploads/${pedido.imgName}"/>`;
+            }
         
         this.modal.alert()
             .size('lg')

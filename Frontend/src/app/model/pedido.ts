@@ -8,4 +8,5 @@ export class Pedido {
     public estimado: string;
     public mesa: string;
     public mozo: string;
+    public imgName: string;
 }

@@ -12,7 +12,7 @@ class PedidoService extends BaseService {
             while($row = $result->fetch_assoc()) {
                 array_push($listaPedidos, new Pedido($row['Id'], $row['Nombre'], $row['Cantidad']
                     ,$row['Estado'], $row['Asignado'], $row['Iniciado'],$row['Estimado'], $row['Mesa']
-                    , $row['Mozo']));
+                    , $row['Mozo'], $row['ImgName']));
             }
         }
         $conn->close();
@@ -21,9 +21,9 @@ class PedidoService extends BaseService {
 
     public static function Alta($pedido) {
         $conn = parent::doConnection();
-        $sql = "INSERT INTO id7281007_labtp.Pedidos (Nombre, Cantidad, Estado, Iniciado, Mesa, Mozo) 
-                VALUES ('$pedido->nombre', '$pedido->cantidad', '$pedido->estado'
-                        , '$pedido->iniciado', '$pedido->mesa', '$pedido->mozo')";
+        $sql = "INSERT INTO id7281007_labtp.Pedidos (Nombre, Cantidad, Estado, Iniciado, Mesa, Mozo, ImgName) 
+                VALUES ('$pedido->nombre', '$pedido->cantidad', '$pedido->estado', '$pedido->iniciado', 
+                        '$pedido->mesa', '$pedido->mozo', '$pedido->imgName')";
         $conn->query($sql);
         $conn->close();
         return 'ok';
@@ -34,7 +34,7 @@ class PedidoService extends BaseService {
         $sql = "UPDATE id7281007_labtp.Pedidos 
                 SET Nombre = '$pedido->nombre', Cantidad = '$pedido->cantidad', Estado = '$pedido->estado', 
                     Iniciado = '$pedido->iniciado', Mesa = '$pedido->mesa', Mozo = '$pedido->mozo', 
-                    Asignado = '$pedido->asignado', Estimado = '$pedido->estimado'
+                    Asignado = '$pedido->asignado', Estimado = '$pedido->estimado', ImgName = '$pedido->imgName'
                 WHERE Id = $pedido->id";
         $conn->query($sql);
         $conn->close();

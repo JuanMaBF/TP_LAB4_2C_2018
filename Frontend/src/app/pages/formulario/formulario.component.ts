@@ -42,13 +42,13 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
     public mesa: string;
     public pedidosList: Array<Pedido> = new Array<Pedido>();
     public errorMessage: string;
-
     public uploadFile: any;
     public hasBaseDropZoneOver: boolean = false;
     public options = { 
         url: 'http://lvh.me/TP_LAB4_2C_2018/Backend/subirImagen.php'
     };
     public sizeLimit = 2000000;
+    public fileName: string;
     
     constructor(private pedidosService: PedidoService,
         private authService: AuthService,
@@ -80,6 +80,7 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
                 p.iniciado = new Date().toLocaleString();
                 p.mesa = this.mesa;
                 p.mozo = currentUser['user'];
+                p.imgName = this.fileName;
             }
         }); 
         if(pedidosValid) {
@@ -97,8 +98,9 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
     handleUpload(data): void {
         if (data && data.response) {
           data = JSON.parse(data.response);
+          this.fileName = data.generatedName;
         }
-        setTimeout(console.clear.bind(console), 10);
+        //setTimeout(console.clear.bind(console), 10);
     }
      
     fileOverBase(e:any):void {

@@ -11,8 +11,10 @@ class Pedido {
     public $estimado;
     public $mesa;
     public $mozo;
+    public $imgName;
 
-    function __construct($id, $nombre, $cantidad, $estado, $asignado, $iniciado, $estimado, $mesa, $mozo) {
+    function __construct($id, $nombre, $cantidad, $estado, $asignado, 
+        $iniciado, $estimado, $mesa, $mozo, $imgName) {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->cantidad = $cantidad;
@@ -22,6 +24,7 @@ class Pedido {
         $this->estimado = $estimado;
         $this->mesa = $mesa;
         $this->mozo = $mozo;
+        $this->imgName = $imgName;
     }
 
 }

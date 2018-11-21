@@ -28,6 +28,7 @@ export class HttpService {
             .post(this.baseUrl + url, JSON.stringify(data))
             .toPromise()
             .then(resp => {
+                console.log(resp);
                 this.showSpinner();
                 return resp;
             })
@@ -39,7 +40,7 @@ export class HttpService {
             .size('sm')
             .showClose(false)
             .okBtnClass('invisible-btn')
-            .body('<img src="../assets/img/spinner.gif" width="50%" class="margin-img">')
+            .body('<img src="https://juanmabf.github.io/TP_LAB4_2C_2018/assets/img/spinner.gif" width="50%" class="margin-img">')
             .open();
         setTimeout(modal.close.bind(modal), 500);
     }

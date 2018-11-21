@@ -12,7 +12,9 @@
     if (isset($_FILES['file'])) {
     $originalName = $_FILES['file']['name'];
     $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
-    $generatedName = 'temp'.$ext;
+    $date = new DateTime();
+    $timeStamp = $date->getTimestamp();
+    $generatedName = $timeStamp.$ext;
     $filePath = $path.$generatedName;
     if (!is_writable($path)) {
         echo json_encode(array(
