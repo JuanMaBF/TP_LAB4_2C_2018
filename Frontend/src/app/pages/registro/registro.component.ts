@@ -25,8 +25,11 @@ import { Router } from "@angular/router";
         private router: Router) {
         this.tiposUsuario = [
             {label:'Mozo', value: 'Mozo'},
-            {label:'Encargado', value: 'Encargado'},
-            {label:'Cocinero', value: 'Cocinero'},
+            {label:'Socio', value: 'Socio'},
+            {label:'Cocinero (Cocina)', value: 'CocineroCoc'},
+            {label:'Cocinero (Postres)', value: 'CocineroPost'},
+            {label:'Cervecero', value: 'Cervecero'},
+            {label:'Bartender', value: 'Bartender'}
         ]
     }
 

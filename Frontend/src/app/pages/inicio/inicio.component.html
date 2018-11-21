@@ -44,10 +44,10 @@
                                     <select [(ngModel)]="ped.estado" 
                                         class="{{'form-control' | sinAsignar:ped.estado}}"
                                         (change)="onStateChange(ped)">
-                                        <option>Pendiente</option>
-                                        <option>En preparacion</option>
-                                        <option>Listo para servir</option>
-                                        <option>Terminado</option>
+                                        <option UserDisabled [userType]="userType" >Pendiente</option>
+                                        <option UserDisabled [userType]="userType" >En preparacion</option>
+                                        <option UserDisabled [userType]="userType" >Listo para servir</option>
+                                        <option UserDisabled [userType]="userType" >Terminado</option>
                                     </select>
                                 </td>
                                 <td><button pButton class="btn btn-info" (click)="verDetalle(ped)"><i class="pi pi-ellipsis-v" style="font-size: 2em"></i></button></td>

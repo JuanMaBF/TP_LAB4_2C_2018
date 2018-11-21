@@ -32,13 +32,16 @@ import { routerTransition } from "src/app/animations/transition.animation";
     public pedidos: Array<Pedido>;
     public currentFilter: string;
     public isMobile: boolean;
+    public userType: string;
 
     constructor(private router: Router,
         private pedidosService: PedidoService,
         private authService: AuthService,
         private modal: Modal) {
-        if(this.authService.getCurrentUser()) {
+        let currentUser = this.authService.getCurrentUser();
+        if(currentUser) {
             this.getAllWithState('Pendiente');
+            this.userType = currentUser.userType;
         } else {
             this.router.navigate['/login'];
         }
@@ -86,7 +89,6 @@ import { routerTransition } from "src/app/animations/transition.animation";
             <b>Tiempo estimado</b>: ${pedido.estimado ? pedido.estado :"<i>Sin definir</i>"} </br>
             <b>Mesa</b>: ${pedido.mesa} </br>
             <b>Mozo</b>: ${pedido.mozo} </br>`;
-            console.log(pedido.imgName);
             if(pedido.imgName) {
                 html += `<b>Foto</b>:<img width="100%" src="https://apitplav.000webhostapp.com/uploads/${pedido.imgName}"/>`;
             }

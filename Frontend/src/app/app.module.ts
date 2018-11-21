@@ -34,6 +34,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { UserDisabledDirective } from './directives/user-disabled.directive';
 
 let router: Routes = [
   { path:'', component: InicioComponent},
@@ -60,7 +61,8 @@ let router: Routes = [
     VinoTintoPipe,
     MayusculaPipe,
     SinAsignarPipe,
-    InformacionComponent
+    InformacionComponent,
+    UserDisabledDirective
   ],
   imports: [
     BrowserModule,
