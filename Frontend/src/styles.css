@@ -48,3 +48,7 @@ nav h2 {
 .ui-button .ui-button-text {
     display: none !important;
 }
+
+inicio {
+    position: relative !important;
+}
