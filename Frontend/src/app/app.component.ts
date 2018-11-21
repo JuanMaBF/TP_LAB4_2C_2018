@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
     <header>
       <nav class="navbar navbar-fixed-top">
           <h2>La comanda</h2>
+          <img src="assets/img/logo.png" width="50vw">
       </nav>
     </header>
     <router-outlet></router-outlet>
