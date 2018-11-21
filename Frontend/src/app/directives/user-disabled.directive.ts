@@ -20,10 +20,13 @@ export class UserDisabledDirective implements OnInit {
             || this.userType == 'CocineroPost'
             || this.userType == 'Cervecero'
             || this.userType == 'Bartender') {
-                if(op == "Pendiente" || op == "Terminado") {
+                if(op == "Pendiente" 
+                    || op == "Terminado"
+                    || op == "Terminados"
+                    || op == "Todos") {
                     this.el.nativeElement.disabled = true;
                 }
-            }
+        } 
     }
 
 }

@@ -41,7 +41,7 @@ import { routerTransition } from "src/app/animations/transition.animation";
         let currentUser = this.authService.getCurrentUser();
         if(currentUser) {
             this.getAllWithState('Pendiente');
-            this.userType = currentUser.userType;
+            this.userType = currentUser.usrType;
         } else {
             this.router.navigate['/login'];
         }
