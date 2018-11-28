@@ -17,7 +17,7 @@ import { Router } from "@angular/router";
     public usr: string
     public pass: string;
     public confirmPass: string;
-    public captchaConfirmed: boolean = true;
+    public captchaConfirmed: boolean = false;
     public type: string = 'Tipo de usuario';
     public errorMsg: string;
 
