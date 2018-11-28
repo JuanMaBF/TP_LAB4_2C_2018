@@ -5,32 +5,35 @@
                 <div class="card-header">
                     <h3>Registro</h3>
                 </div>
+                
                 <div class="card-body">
-                    <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                        <input [(ngModel)]="usr" type="text" pInputText placeholder="Usuario">         
-                    </div>
-                    <br>
-                    <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
-                        <input [(ngModel)]="pass" type="password" pPassword placeholder="Contraseña">         
-                    </div>
-                    <br>
-                    <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
-                        <input [(ngModel)]="confirmPass" type="password" pPassword placeholder="Confirmar contraseña">         
-                    </div>
-                    <br>
-                    <p-dropdown [options]="tiposUsuario" [autoWidth]="false" [(ngModel)]="type"></p-dropdown>
-                    <br/>
-                    <br/>
-                    <re-captcha (resolved)="resolved($event)" siteKey="6LeAvXkUAAAAABEmWDheifWo_PFXmYKTpEdu7_e-"></re-captcha>
-                    <br/>
-                    <span class="text-warning">
-                        {{errorMsg}}
-                    </span>
-                    <input type="button" class="btn btn-lg btn-primary btn-block" value="Registrarse" (click)="registro()" />  
-                    ¿Ya trenés cuenta? <a [routerLink]="['/login']">Iniciá sesion</a>
+                    <form [formGroup]="formGroup">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                            <input formControlName="usr" type="text" pInputText placeholder="Usuario">         
+                        </div>
+                        <br>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+                            <input formControlName="pass" type="password" pPassword placeholder="Contraseña">         
+                        </div>
+                        <br>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+                            <input formControlName="confirmPass" type="password" pPassword placeholder="Confirmar contraseña">         
+                        </div>
+                        <br>
+                        <p-dropdown [options]="tiposUsuario" [autoWidth]="false" formControlName="type"></p-dropdown>
+                        <br/>
+                        <br/>
+                        <re-captcha (resolved)="resolved($event)" siteKey="6LeAvXkUAAAAABEmWDheifWo_PFXmYKTpEdu7_e-"></re-captcha>
+                        <br/>
+                        <span class="text-warning">
+                            {{errorMsg}}
+                        </span>
+                        <input type="button" class="btn btn-lg btn-primary btn-block" value="Registrarse" (click)="registro()" />  
+                        ¿Ya trenés cuenta? <a [routerLink]="['/login']">Iniciá sesion</a>
+                    </form>
                 </div>
             </div>
                             

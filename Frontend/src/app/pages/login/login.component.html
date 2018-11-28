@@ -6,21 +6,23 @@
                     <h3>Login</h3>
                 </div>
                 <div class="card-body">
-                    <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                        <input [(ngModel)]="usr" type="text" pInputText placeholder="Usuario">         
-                    </div>
-                    <br>
-                    <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
-                        <input [(ngModel)]="pass" type="password" pInputText placeholder="Password">         
-                    </div>
-                    <br>
-                    <span class="text-warning">
-                        {{errorMsg}}
-                    </span>
-                    <button type="button" class="btn btn-lg btn-primary btn-block" (click)="login()">Ingresar</button>  
-                    ¿No trenés cuenta? <a [routerLink]="['/registro']">Registrate</a>
+                    <form [formGroup]="formGroup">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                            <input name="usr" formControlName="usr" type="text" pInputText placeholder="Usuario">         
+                        </div>
+                        <br>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+                            <input name="pass" formControlName="pass" type="password" pInputText placeholder="Password">         
+                        </div>
+                        <br>
+                        <span class="text-warning">
+                            {{errorMsg}}
+                        </span>
+                        <button type="button" class="btn btn-lg btn-primary btn-block" (click)="login()">Ingresar</button>  
+                        ¿No trenés cuenta? <a [routerLink]="['/registro']">Registrate</a>
+                    </form>
                 </div>
             </div>
                             

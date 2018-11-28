@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Usuario } from "src/app/model/usuario";
 import { Router } from "@angular/router";
+import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 
 @Component({
     selector: 'registro',
@@ -14,15 +15,24 @@ import { Router } from "@angular/router";
 }) export class RegistroComponent {
     
     public tiposUsuario: Array<any>;
-    public usr: string
-    public pass: string;
-    public confirmPass: string;
+    
     public captchaConfirmed: boolean = false;
-    public type: string = 'Tipo de usuario';
+    //public type: string = 'Tipo de usuario';
     public errorMsg: string;
+    
+    public formGroup: FormGroup;
 
     constructor(private authService: AuthService,
-        private router: Router) {
+        private router: Router,
+        private fb: FormBuilder) {
+
+        this.formGroup = this.fb.group({
+            usr: ['', [Validators.required]],
+            pass: ['', [Validators.required]],
+            confirmPass: ['Tipo de usuario', [Validators.required]],
+            type: ['', [Validators.required]],
+        });
+
         this.tiposUsuario = [
             {label:'Mozo', value: 'Mozo'},
             {label:'Socio', value: 'Socio'},
@@ -34,9 +44,12 @@ import { Router } from "@angular/router";
     }
 
     public registro(): void {
+        let usr = this.formGroup.controls['usr'].value;
+        let pass = this.formGroup.controls['pass'].value;
+        let type = this.formGroup.controls['type'].value;
         this.errorMsg = this.validateFields();
         if(this.errorMsg == "") {
-            let usuario = new Usuario(this.usr, this.pass, this.type);
+            let usuario = new Usuario(usr, pass, type);
             this.authService
                 .registro(usuario)
                 .then(rta => this.handleRta(rta));
@@ -48,15 +61,19 @@ import { Router } from "@angular/router";
     }
 
     public validateFields(): string {
-        if(!this.usr) {
+        let usr = this.formGroup.controls['usr'].value;
+        let pass = this.formGroup.controls['pass'].value;
+        let confirmPass = this.formGroup.controls['confirmPass'].value;
+        let type = this.formGroup.controls['type'].value;
+        if(!usr) {
             return "Usuario incorrecto";
-        } else if (!this.usr) {
+        } else if (!usr) {
             return "Usuario incorrecto";
-        } else if (!this.pass) {
+        } else if (!pass) {
             return "Contraseña incorrecta";
-        } else if (this.type == 'Tipo de usuario') {
+        } else if (type == 'Tipo de usuario') {
             return "Tipo de usuario incorrecto";
-        } else if (this.pass != this.confirmPass) {
+        } else if (pass != confirmPass) {
             return "Las contraseñas no coinciden";
         } else if (!this.captchaConfirmed) {
             return "Confirme el captcha";

@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { HttpService } from './services/http.service';
 import { AuthService } from './services/auth.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -91,7 +91,9 @@ let router: Routes = [
       storageBucket: "tplab4-3498e.appspot.com",
       messagingSenderId: "447742251777"
     }),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     HttpService,

@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Usuario } from "src/app/model/usuario";
 import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
     selector: 'login',
@@ -12,23 +13,30 @@ import { Router } from "@angular/router";
         }
     `]
 }) export class LoginComponent {
-    
-    public usr: string
-    public pass: string;
+
     public errorMsg: string;
 
+    public formGroup: FormGroup;
+
     constructor(private authService: AuthService,
-        private router: Router) {
+        private router: Router,
+        private fb: FormBuilder) {
+        this.formGroup = this.fb.group({
+            usr: ['', [Validators.required]],
+            pass: ['', [Validators.required]]
+        });
     }
 
     public login() {
-        if(this.usr && this.pass) {
-            let usuario = new Usuario(this.usr, this.pass);
+        let usr = this.formGroup.controls['usr'].value;
+        let pass = this.formGroup.controls['pass'].value
+        if(this.formGroup.controls['usr'].value && this.formGroup.controls[''].value) {
+            let usuario = new Usuario(usr, pass);
             this.authService
                 .login(usuario)
                 .then(rta => this.handleRta(rta));
         } else {
-            this.errorMsg = !this.usr ? "Usuario incorrecto" : !this.pass ? "Contraseña incorrecta" : "";
+            this.errorMsg = !usr ? "Ingrese el usuario" : !pass ? "Ingrese la contraseña" : "";
         }
     }
 
