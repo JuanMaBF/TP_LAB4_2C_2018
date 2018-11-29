@@ -17,7 +17,6 @@ import { FormGroup, Validators, FormBuilder } from "@angular/forms";
     public tiposUsuario: Array<any>;
     
     public captchaConfirmed: boolean = false;
-    //public type: string = 'Tipo de usuario';
     public errorMsg: string;
     
     public formGroup: FormGroup;
@@ -29,8 +28,8 @@ import { FormGroup, Validators, FormBuilder } from "@angular/forms";
         this.formGroup = this.fb.group({
             usr: ['', [Validators.required]],
             pass: ['', [Validators.required]],
-            confirmPass: ['Tipo de usuario', [Validators.required]],
-            type: ['', [Validators.required]],
+            confirmPass: ['', [Validators.required]],
+            type: ['Mozo', [Validators.required]],
         });
 
         this.tiposUsuario = [

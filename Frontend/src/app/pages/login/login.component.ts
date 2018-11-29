@@ -55,4 +55,30 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
         }
     }
 
+    public testLogin(user: string) {
+        let usr;
+        let pass;
+        if(user == 'Mozo') {
+            usr = 'Mozo1';
+            pass = 'Mozo1';
+        } else if(user == 'Socio') {
+            usr = 'Socio1';
+            pass = 'Socio1';
+        } else if(user == 'CocineroCoc') {
+            usr = 'CocineroCoc1';
+            pass = 'CocineroCoc1';
+        } else if(user == 'CocineroPost') {
+            usr = 'CocineroPost1';
+            pass = 'CocineroPost1';
+        } else if(user == 'Cervecero') {
+            usr = 'Cervecero1';
+            pass = 'Cervecero1';
+        } else if(user == 'Bartender') {
+            usr = 'Bartender1';
+            pass = 'Bartender1';
+        } 
+        this.formGroup.controls['usr'].setValue(usr);
+        this.formGroup.controls['pass'].setValue(pass);
+    }
+
 }

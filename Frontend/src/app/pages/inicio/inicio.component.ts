@@ -57,6 +57,7 @@ import { routerTransition } from "src/app/animations/transition.animation";
     }
 
     private getAllWithState(state: string): void {
+        let tipo = this.authService.getCurrentUser().tipo;
         let token = this.authService.getCurrentUser().token;
         this.pedidosService
             .traerTodos(token)
@@ -64,6 +65,15 @@ import { routerTransition } from "src/app/animations/transition.animation";
                 let todos = rta as Array<Pedido>;
                 todos = todos.reverse();
                 this.pedidos = todos.filter(p => p.estado == state);
+                if(tipo == 'CocineroCoc') {
+                    this.pedidos = this.pedidos.filter(p => p.nombre == "Empanada" || p.nombre == "Tarta");
+                } else if(tipo == "CocineroPost") {
+                    this.pedidos = this.pedidos.filter(p => p.nombre == "Alfajor" || p.nombre == "Torta");
+                } else if(tipo == "Cervecero") {
+                    this.pedidos = this.pedidos.filter(p => p.nombre == "Cerveza rubia" || p.nombre == "Cerveza negra");
+                } else if(tipo == "Bartender") {
+                    this.pedidos = this.pedidos.filter(p => p.nombre == "Vino tinto" || p.nombre == "Vino blanco");
+                }
             });
         this.currentFilter = state;
     }

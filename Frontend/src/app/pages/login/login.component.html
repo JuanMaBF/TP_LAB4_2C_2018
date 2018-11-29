@@ -23,6 +23,14 @@
                         <button type="button" class="btn btn-lg btn-primary btn-block" (click)="login()">Ingresar</button>  
                         ¿No trenés cuenta? <a [routerLink]="['/registro']">Registrate</a>
                     </form>
+
+                    <button class="btn btn-sm btn-primary" (click)="testLogin('Mozo')">Mozo</button>
+                    <button class="btn btn-sm btn-primary" (click)="testLogin('Socio')">Socio</button>
+                    <button class="btn btn-sm btn-primary" (click)="testLogin('CocineroCoc')">Cocinero (Cocina)</button>
+                    <button class="btn btn-sm btn-primary" (click)="testLogin('CocineroPost')">Cocinero (Postres)</button>
+                    <button class="btn btn-sm btn-primary" (click)="testLogin('Cervecero')">Cervecero</button>
+                    <button class="btn btn-sm btn-primary" (click)="testLogin('Bartender')">Bartender</button>
+
                 </div>
             </div>
                             
