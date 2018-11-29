@@ -312,6 +312,10 @@ highcharts@6.2.0
 https://www.highcharts.com/license
 https://www.highcharts.com/license
 
+angularfire2@5.1.0
+MIT
+MIT
+
 xlsx@0.14.1
 Apache-2.0
 Apache License
@@ -600,6 +604,26 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+@firebase/app@0.3.5
+Apache-2.0
+Apache-2.0
+
+@firebase/util@0.2.3
+Apache-2.0
+Apache-2.0
+
+firebase@5.5.9
+Apache-2.0
+Apache-2.0
+
+@firebase/polyfill@0.3.3
+Apache-2.0
+Apache-2.0
+
+@angular/fire@5.1.0
+MIT
+MIT
 
 @angular/core@6.1.10
 MIT
