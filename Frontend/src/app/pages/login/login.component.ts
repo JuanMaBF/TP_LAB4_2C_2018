@@ -30,7 +30,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
     public login() {
         let usr = this.formGroup.controls['usr'].value;
         let pass = this.formGroup.controls['pass'].value
-        if(this.formGroup.controls['usr'].value && this.formGroup.controls[''].value) {
+        if(usr && pass) {
             let usuario = new Usuario(usr, pass);
             this.authService
                 .login(usuario)
